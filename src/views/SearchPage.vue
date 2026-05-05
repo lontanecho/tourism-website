@@ -28,7 +28,6 @@
       </button>
     </div>
 
-    <!-- 游记排序栏 只在游记且已搜索时显示 -->
     <div class="search-toolbar" v-if="activeTab === 'note' && searched">
       <div class="result-count">共 {{ noteList.length }} 条结果</div>
       <div class="sort">
@@ -40,7 +39,7 @@
       </div>
     </div>
 
-    <!-- 目的地结果列表 样式还原你最初版本 -->
+   
     <div class="result-list" v-if="activeTab === 'destination' && searched">
       <div
         v-for="item in spotList"
@@ -78,7 +77,7 @@
       </div>
     </div>
 
-    <!-- 游记结果列表 保持你原来的卡片样式 -->
+    
     <div class="result-list" v-if="activeTab === 'note' && searched">
       <div
         v-for="item in noteList"
@@ -145,7 +144,7 @@ const searched = ref(false)
 const spotList = ref([])
 const noteList = ref([])
 
-// 页面挂载：有传参就自动切游记标签+自动搜索
+// 页面挂载
 onMounted(async () => {
   const q = route.query.keyword
   if (q) {
