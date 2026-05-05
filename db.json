@@ -1,0 +1,360 @@
+{
+  "users": [
+    {
+      "username": "小美",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=1",
+      "id": "NSKfzX69tbQ"
+    },
+    {
+      "username": "小帅",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=2",
+      "id": "2ftfY_ItOSc"
+    },
+    {
+      "username": "旅行酱",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=3",
+      "id": "aB7sK9xLzQw"
+    },
+    {
+      "username": "青山",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=4",
+      "id": "kP9sR2tBvFg"
+    },
+    {
+      "username": "小雨",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=5",
+      "id": "zL5kF7gHjT2"
+    },
+    {
+      "username": "阿文",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=6",
+      "id": "mR4sP8dFgH1"
+    },
+    {
+      "username": "小桃",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=7",
+      "id": "qW3eR7tYbNd"
+    },
+    {
+      "username": "藏地行者",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=8",
+      "id": "tB6vF5sGjKl"
+    },
+    {
+      "username": "大山",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=9",
+      "id": "pO9iU7yTrEf"
+    },
+    {
+      "username": "云海",
+      "password": "111",
+      "avatar": "https://picsum.photos/200/200?random=10",
+      "id": "wS2dF5gHjKl"
+    }
+  ],
+  "spots": [
+    {
+      "id": 1,
+      "name": "故宫",
+      "nameEn": "Forbidden City",
+      "image": "https://picsum.photos/600/350?random=1",
+      "score": 9.6,
+      "intro": "北京故宫，旧称紫禁城。位于北京中轴线的中心，是明清两个朝代的皇宫，占地面积72万平方米，建筑面积约15万平方米，是世界上现存规模最大、保存最为完整的木质结构的宫殿型建筑。",
+      "address": "北京市东城区景山前街4号"
+    },
+    {
+      "id": 2,
+      "name": "长城",
+      "nameEn": "The Great Wall",
+      "image": "https://picsum.photos/600/350?random=2",
+      "score": 9.7,
+      "intro": "中国万里长城是古代的军事防御工程，是世界七大奇迹之一，1987年列入世界文化遗产。长城气势磅礴，横贯中国北方，象征着中华民族的坚韧与智慧。",
+      "address": "北京市延庆区八达岭特区"
+    },
+    {
+      "id": 3,
+      "name": "颐和园",
+      "nameEn": "Summer Palace",
+      "image": "https://picsum.photos/600/350?random=3",
+      "score": 9.3,
+      "intro": "颐和园是保存最完整的一座皇家行宫御苑，被誉为“皇家园林博物馆”，是中国四大名园之一，以山水秀丽、建筑精美闻名世界。",
+      "address": "北京市海淀区新建宫门路19号"
+    },
+    {
+      "id": 4,
+      "name": "天坛公园",
+      "nameEn": "Temple of Heaven",
+      "image": "https://picsum.photos/600/350??random=4",
+      "score": 9.2,
+      "intro": "天坛始建于明代，是明清两代皇帝祭祀皇天、祈祷五谷丰登的场所，以严谨的建筑布局、奇特的建筑构造和瑰丽的建筑装饰著称于世。",
+      "address": "北京市东城区天坛东里甲1号"
+    },
+    {
+      "id": 5,
+      "name": "兵马俑",
+      "nameEn": "Terracotta Army",
+      "image": "https://picsum.photos/600/350?random=5",
+      "score": 9.8,
+      "intro": "秦始皇兵马俑是世界十大古墓稀世珍宝之一，气势恢宏，造型逼真，被誉为“世界第八大奇迹”，是中国古代辉煌文明的金字名片。",
+      "address": "陕西省西安市临潼区秦陵北路"
+    },
+    {
+      "id": 6,
+      "name": "西湖",
+      "nameEn": "West Lake",
+      "image": "https://picsum.photos/600/350?random=6",
+      "score": 9.5,
+      "intro": "杭州西湖是中国十大风景名胜之一，三面云山，一水抱城，以秀丽的湖光山色和众多名胜古迹闻名中外，被誉为“人间天堂”。",
+      "address": "浙江省杭州市西湖区西湖风景区"
+    },
+    {
+      "id": 7,
+      "name": "布达拉宫",
+      "nameEn": "Potala Palace",
+      "image": "https://picsum.photos/600/350??random=7",
+      "score": 9.7,
+      "intro": "布达拉宫是世界上海拔最高的宫殿，是藏传佛教的圣地，依山而建，气势雄伟，是西藏最庞大、最完整的古代宫堡建筑群。",
+      "address": "西藏自治区拉萨市城关区北京中路35号"
+    },
+    {
+      "id": 8,
+      "name": "张家界",
+      "nameEn": "Zhangjiajie",
+      "image": "https://picsum.photos/600/350?random=8",
+      "score": 9.4,
+      "intro": "张家界国家森林公园以峰奇、谷幽、水秀、林深著称，被誉为“中国山水画的原本”，是阿凡达悬浮山的取景地。",
+      "address": "湖南省张家界市武陵源区金鞭路"
+    },
+    {
+      "id": 9,
+      "name": "黄山",
+      "nameEn": "Huangshan Mountain",
+      "image": "https://picsum.photos/600/350?random=9",
+      "score": 9.8,
+      "intro": "黄山被誉为“天下第一奇山”，以奇松、怪石、云海、温泉、冬雪“五绝”著称于世，是中国山水文化的杰出代表。",
+      "address": "安徽省黄山市黄山区汤口镇"
+    }
+  ],
+  "articles": [
+    {
+      "userId": "NSKfzX69tbQ",
+      "username": "小美",
+      "userAvatar": "https://picsum.photos/200/200?random=1",
+      "title": "北京故宫一日游",
+      "cover": "https://picsum.photos/800/400?random=10",
+      "content": "<div style='font-size:24px; font-weight:bold;'>故宫真的太震撼了！</div><p>红墙黄瓦，一步一景，能深刻感受到历史的厚重。推荐大家早上去，人少拍照好看～</p>",
+      "createTime": "2026/4/20 10:11:12",
+      "likeCount": 20,
+      "collectCount": 15,
+      "likeUserIds": [],
+      "collectUserIds": [],
+      "images": [],
+      "videos": [],
+      "id": "art001",
+      "viewCount": 320,
+      "score": 4.8,
+      "userScores": [5,5,4,5]
+    },
+    {
+      "userId": "2ftfY_ItOSc",
+      "username": "小帅",
+      "userAvatar": "https://picsum.photos/200/200?random=2",
+      "title": "万里长城，不到长城非好汉",
+      "cover": "https://picsum.photos/800/400?random=11",
+      "content": "<div style='font-size:24px; font-weight:bold;'>长城太壮观了！</div><p>爬上去虽然累，但风景绝对值得。建议穿舒适鞋子，备好水。</p>",
+      "createTime": "2026/4/20 11:22:33",
+      "likeCount": 15,
+      "collectCount": 10,
+      "images": [],
+      "videos": [],
+      "id": "art002",
+      "viewCount": 280,
+      "score": 4.7,
+      "userScores": [5,4,5]
+    },
+    {
+      "userId": "aB7sK9xLzQw",
+      "username": "旅行酱",
+      "userAvatar": "https://picsum.photos/200/200?random=3",
+      "title": "颐和园的美，江南既视感",
+      "content": "<div style='font-size:24px; font-weight:bold;'>皇家园林名不虚传</div><p>长廊、湖泊、小桥流水，像走进水墨画里一样，超适合散步拍照。</p>",
+      "createTime": "2026/4/20 13:14:15",
+      "likeCount": 33,
+      "collectCount": 22,
+      "images": [],
+      "videos": [],
+      "id": "art003",
+      "viewCount": 410,
+      "score": 4.6,
+      "userScores": [4,5,4,5]
+    },
+    {
+      "userId": "kP9sR2tBvFg",
+      "username": "青山",
+      "userAvatar": "https://picsum.photos/200/200?random=4",
+      "title": "天坛祈福，宁静又庄严",
+      "content": "<div style='font-size:24px; font-weight:bold;'>天坛氛围超棒</div><p>祈年殿太出片了！人不多的时候特别安静，能感受到古代皇家祭祀的庄严。</p>",
+      "createTime": "2026/4/20 14:10:20",
+      "likeCount": 18,
+      "collectCount": 9,
+      "images": [],
+      "videos": [],
+      "id": "art004",
+      "viewCount": 199,
+      "score": 4.5,
+      "userScores": [4,5,4]
+    },
+    {
+      "userId": "zL5kF7gHjT2",
+      "username": "小雨",
+      "userAvatar": "https://picsum.photos/200/200?random=5",
+      "title": "兵马俑，世界第八大奇迹",
+      "content": "<div style='font-size:24px; font-weight:bold;'>震撼到失语！</div><p>千人千面，历史感扑面而来。一定要请讲解，不然看不懂背后的历史。</p>",
+      "createTime": "2026/4/20 15:33:44",
+      "likeCount": 66,
+      "collectCount": 50,
+      "images": [],
+      "videos": [],
+      "id": "art005",
+      "viewCount": 720,
+      "score": 4.9,
+      "userScores": [5,5,5,4]
+    },
+    {
+      "userId": "mR4sP8dFgH1",
+      "username": "阿文",
+      "userAvatar": "https://picsum.photos/200/200?random=6",
+      "title": "西湖漫步，人间天堂",
+      "content": "<div style='font-size:24px; font-weight:bold;'>西湖太美啦</div><p>环湖骑行、坐船、拍照，怎么玩都舒服。春天来最合适，花开满城。</p>",
+      "createTime": "2026/4/20 16:20:30",
+      "likeCount": 45,
+      "collectCount": 31,
+      "images": [],
+      "videos": [],
+      "id": "art006",
+      "viewCount": 560,
+      "score": 4.7,
+      "userScores": [5,4,4,5]
+    },
+    {
+      "userId": "qW3eR7tYbNd",
+      "username": "小桃",
+      "userAvatar": "https://picsum.photos/200/200?random=7",
+      "title": "布达拉宫，心灵的净土",
+      "content": "<div style='font-size:24px; font-weight:bold;'>高原上的圣殿</div><p>高反有点难受，但看到布达拉宫那一刻，一切都值得。信仰的力量太强大。</p>",
+      "createTime": "2026/4/20 17:10:11",
+      "likeCount": 89,
+      "collectCount": 77,
+      "images": [],
+      "videos": [],
+      "id": "art007",
+      "viewCount": 910,
+      "score": 4.9,
+      "userScores": [5,5,5,4]
+    },
+    {
+      "userId": "tB6vF5sGjKl",
+      "username": "藏地行者",
+      "userAvatar": "https://picsum.photos/200/200?random=8",
+      "title": "张家界，阿凡达的世界",
+      "content": "<div style='font-size:24px; font-weight:bold;'>奇峰三千，秀水八百</div><p>云雾缭绕的时候像仙境，百龙天梯、玻璃桥都超刺激！</p>",
+      "createTime": "2026/4/20 18:40:50",
+      "likeCount": 56,
+      "collectCount": 39,
+      "images": [],
+      "videos": [],
+      "id": "art008",
+      "viewCount": 680,
+      "score": 4.8,
+      "userScores": [5,4,5,5]
+    },
+    {
+      "userId": "pO9iU7yTrEf",
+      "username": "大山",
+      "userAvatar": "https://picsum.photos/200/200?random=9",
+      "title": "黄山归来不看岳",
+      "content": "<div style='font-size:24px; font-weight:bold;'>黄山五绝名不虚传</div><p>奇松、怪石、云海、温泉、冬雪，每一样都让人惊叹，中国最美名山之一。</p>",
+      "createTime": "2026/4/20 19:22:33",
+      "likeCount": 77,
+      "collectCount": 65,
+      "images": [],
+      "videos": [],
+      "id": "art009",
+      "viewCount": 850,
+      "score": 5.0,
+      "userScores": [5,5,5,5]
+    },
+    {
+      "userId": "wS2dF5gHjKl",
+      "username": "云海",
+      "userAvatar": "https://picsum.photos/200/200?random=10",
+      "title": "9天走遍中国9大景点",
+      "content": "<div style='font-size:24px; font-weight:bold;'>超全攻略！</div><p>一次走完故宫、长城、西湖、黄山……祖国大好河山太美了，此生必去！</p>",
+      "createTime": "2026/4/20 20:10:10",
+      "likeCount": 120,
+      "collectCount": 99,
+      "images": [],
+      "videos": [],
+      "id": "art010",
+      "viewCount": 1200,
+      "score": 4.9,
+      "userScores": [5,5,4,5]
+    }
+  ],
+  "comments": [
+    { "id": "c1", "articleId": "art001", "avatar": "https://picsum.photos/200/200?random=30", "username": "游客A", "content": "写得超详细，我下周就去！", "score": 5, "time": "2026/4/20 11:00:00" },
+    { "id": "c2", "articleId": "art001", "avatar": "https://picsum.photos/200/200?random=31", "username": "游客B", "content": "故宫拍照真的绝了", "score": 4, "time": "2026/4/20 11:10:00" },
+    { "id": "c3", "articleId": "art001", "avatar": "https://picsum.photos/200/200?random=32", "username": "游客C", "content": "感谢攻略，非常实用", "score": 5, "time": "2026/4/20 11:20:00" },
+    { "id": "c4", "articleId": "art002", "avatar": "https://picsum.photos/200/200?random=33", "username": "小明", "content": "爬长城真的超累但超值得", "score": 5, "time": "2026/4/20 12:00:00" },
+    { "id": "c5", "articleId": "art002", "avatar": "https://picsum.photos/200/200?random=34", "username": "小红", "content": "好汉碑一定要打卡", "score": 4, "time": "2026/4/20 12:10:00" },
+    { "id": "c6", "articleId": "art002", "avatar": "https://picsum.photos/200/200?random=35", "username": "小刚", "content": "风景无敌，推荐早上去", "score": 5, "time": "2026/4/20 12:20:00" },
+    { "id": "c7", "articleId": "art003", "avatar": "https://picsum.photos/200/200?random=36", "username": "乐乐", "content": "长廊拍照巨出片", "score": 4, "time": "2026/4/20 13:00:00" },
+    { "id": "c8", "articleId": "art003", "avatar": "https://picsum.photos/200/200?random=37", "username": "佳佳", "content": "春天的颐和园最美", "score": 5, "time": "2026/4/20 13:10:00" },
+    { "id": "c9", "articleId": "art003", "avatar": "https://picsum.photos/200/200?random=38", "username": "伟伟", "content": "皇家园林就是气派", "score": 4, "time": "2026/4/20 13:20:00" },
+    { "id": "c10", "articleId": "art004", "username": "小秋", "content": "祈年殿太震撼了", "score": 5, "time": "2026/4/20 14:00:00" },
+    { "id": "c11", "articleId": "art004", "username": "小冬", "content": "安静又庄严，很治愈", "score": 4, "time": "2026/4/20 14:10:00" },
+    { "id": "c12", "articleId": "art004", "username": "小春", "content": "推荐大家来感受历史", "score": 5, "time": "2026/4/20 14:20:00" },
+    { "id": "c13", "articleId": "art005", "username": "历史迷", "content": "世界奇迹名不虚传", "score": 5, "time": "2026/4/20 15:00:00" },
+    { "id": "c14", "articleId": "art005", "username": "旅行家", "content": "一定要请讲解！", "score": 5, "time": "2026/4/20 15:10:00" },
+    { "id": "c15", "articleId": "art005", "username": "背包客", "content": "看完太震撼了", "score": 4, "time": "2026/4/20 15:20:00" },
+    { "id": "c16", "articleId": "art006", "username": "杭州人", "content": "欢迎来杭州玩～", "score": 5, "time": "2026/4/20 16:00:00" },
+    { "id": "c17", "articleId": "art006", "username": "游客", "content": "西湖真的人间天堂", "score": 4, "time": "2026/4/20 16:10:00" },
+    { "id": "c18", "articleId": "art006", "username": "摄影爱好者", "content": "拍照圣地", "score": 5, "time": "2026/4/20 16:20:00" },
+    { "id": "c19", "articleId": "art007", "username": "朝圣者", "content": "心灵被净化了", "score": 5, "time": "2026/4/20 17:00:00" },
+    { "id": "c20", "articleId": "art007", "username": "驴友", "content": "高反注意安全", "score": 4, "time": "2026/4/20 17:10:00" },
+    { "id": "c21", "articleId": "art007", "username": "信仰者", "content": "神圣庄严，值得一去", "score": 5, "time": "2026/4/20 17:20:00" },
+    { "id": "c22", "articleId": "art008", "username": "阿凡达迷", "content": "悬浮山原型太美了", "score": 5, "time": "2026/4/20 18:00:00" },
+    { "id": "c23", "articleId": "art008", "username": "登山爱好者", "content": "奇峰怪石太壮观", "score": 4, "time": "2026/4/20 18:10:00" },
+    { "id": "c24", "articleId": "art008", "username": "自然控", "content": "云雾缭绕像仙境", "score": 5, "time": "2026/4/20 18:20:00" },
+    { "id": "c25", "articleId": "art009", "username": "黄山常客", "content": "黄山真的太美了", "score": 5, "time": "2026/4/20 19:00:00" },
+    { "id": "c26", "articleId": "art009", "username": "风光摄影师", "content": "云海绝了", "score": 5, "time": "2026/4/20 19:10:00" },
+    { "id": "c27", "articleId": "art009", "username": "爬山爱好者", "content": "累并快乐着", "score": 5, "time": "2026/4/20 19:20:00" },
+    { "id": "c28", "articleId": "art010", "username": "攻略达人", "content": "这攻略太全了", "score": 5, "time": "2026/4/20 20:00:00" },
+    { "id": "c29", "articleId": "art010", "username": "准备出发", "content": "收藏了，马上用", "score": 4, "time": "2026/4/20 20:10:00" },
+    { "id": "c30", "articleId": "art010", "username": "旅游爱好者", "content": "祖国山河太壮丽", "score": 5, "time": "2026/4/20 20:20:00" }
+  ],
+
+  "foods": [
+    { "id": 101, "spotId": 1, "name": "宫廷糕点", "category": "小吃", "shopName": "御膳房", "score": 4.9, "hot": 99, "distance": 0.2, "image": "https://picsum.photos/300/200?1", "intro": "皇家风味" },
+    { "id": 102, "spotId": 1, "name": "老北京炸酱面", "category": "面食", "shopName": "南门小吃", "score": 4.8, "hot": 95, "distance": 0.4, "image": "https://picsum.photos/300/200?2", "intro": "正宗老北京" },
+    { "id": 103, "spotId": 2, "name": "长城烤肠", "category": "小吃", "shopName": "关口小店", "score": 4.7, "hot": 90, "distance": 0.3, "image": "https://picsum.photos/300/200?3", "intro": "登山必备" },
+    { "id": 104, "spotId": 3, "name": "苏州糕点", "category": "小吃", "shopName": "颐和甜品", "score": 4.8, "hot": 92, "distance": 0.5, "image": "https://picsum.photos/300/200?4", "intro": "江南风味" },
+    { "id": 105, "spotId": 4, "name": "北京烤鸭", "category": "粤菜", "shopName": "全福德", "score": 4.9, "hot": 98, "distance": 1.0, "image": "https://picsum.photos/300/200?5", "intro": "外酥里嫩" },
+    { "id": 106, "spotId": 5, "name": "肉夹馍", "category": "小吃", "shopName": "秦味小吃", "score": 4.8, "hot": 96, "distance": 0.6, "image": "https://picsum.photos/300/200?6", "intro": "陕西特色" },
+    { "id": 107, "spotId": 6, "name": "西湖醋鱼", "category": "粤菜", "shopName": "楼外楼", "score": 4.9, "hot": 97, "distance": 0.4, "image": "https://picsum.photos/300/200?7", "intro": "酸甜鲜嫩" },
+    { "id": 108, "spotId": 7, "name": "酥油茶", "category": "小吃", "shopName": "藏家小店", "score": 4.7, "hot": 88, "distance": 0.8, "image": "https://picsum.photos/300/200?8", "intro": "高原特色" },
+    { "id": 109, "spotId": 8, "name": "三下锅", "category": "川菜", "shopName": "湘西菜馆", "score": 4.8, "hot": 93, "distance": 1.2, "image": "https://picsum.photos/300/200?9", "intro": "香辣过瘾" },
+    { "id": 110, "spotId": 9, "name": "黄山烧饼", "category": "小吃", "shopName": "老街烧饼", "score": 4.9, "hot": 94, "distance": 0.3, "image": "https://picsum.photos/300/200?10", "intro": "酥脆咸香" }
+  ]
+  
+  
+}

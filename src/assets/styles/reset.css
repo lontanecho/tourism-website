@@ -1,0 +1,99 @@
+/* src/assets/styles/reset.css */
+/* 基础样式重置 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 新标签重置 */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+/* 身体基础样式 */
+body {
+	line-height: 1;
+}
+
+/* 列表样式重置 */
+ol, ul {
+	list-style: none;
+}
+
+/* 引用样式重置 */
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* 表格样式重置 */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 链接样式重置 */
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* 按钮、输入框样式重置 */
+button, input, select, textarea {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	background: none;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+/* 图片样式重置 */
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* 盒模型统一 */
+* {
+	box-sizing: border-box;
+}
+
+/* 清除浮动 */
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* 禁止选中文本（可选） */
+.unselectable {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

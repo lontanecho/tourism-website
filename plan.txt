@@ -1,0 +1,24 @@
+src/
+├── assets/          # 静态资源（图片、全局样式）
+│   └── styles/
+│       ├── reset.css    # 样式重置
+│       └── common.css   # 通用样式（按钮、容器、标题等）
+├── components/      # 通用/页面组件
+│   ├── layout/      # 布局类组件
+│   │   ├── NavBar.vue   # 导航栏组件
+│   │   └── Footer.vue   # 页脚组件
+│   ├── home/        # 首页专属组件
+│   │   ├── Banner.vue      # 轮播图组件
+│   │   ├── Destination.vue  # 热门目的地组件
+│   │   ├── Service.vue      # 特色服务组件
+│   │   ├── Review.vue       # 用户评价组件
+│   │   └── CustomTrip.vue   # 定制旅行组件
+│   └── common/      # 全局通用组件（如按钮、评分）
+│       └── StarRating.vue   # 星级评分组件
+├── data/            # 模拟数据
+│   └── homeData.js  # 首页所有模拟数据
+├── views/           # 页面级组件
+│   └── Home.vue     # 首页入口（整合所有子组件）
+├── router/          # 路由配置
+│   └── index.js     # 路由规则
+└── App.vue          # 根组件
