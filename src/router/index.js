@@ -67,8 +67,11 @@ const router = createRouter({
     {
       path: '/article/detail/:id',
       component: () => import('../views/DiaryCard.vue')
-    }
-        
+    },
+    {
+      path: '/food-detail/:id',
+      component: () => import('../views/FoodDetail.vue')
+    }    
   ]
 })
 

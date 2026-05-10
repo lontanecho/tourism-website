@@ -1,43 +1,40 @@
 <template>
   <NavBar_black />
   <div class="page-wrap">
+    
     <div class="poi-title-block">
       <div class="title-inner">
         <h1>
-          {{ spot.nameEn }}
-          <small>{{ spot.name }}</small>
+          {{ food.name }}
+          <small>{{ food.category }}</small>
         </h1>
-        <div class="action-buttons">
-          <button class="write-btn" @click="goToTravelNotes">
-            相关游记
-          </button>
-          <button class="write-btn" @click="goToFood">
-            附近美食
-          </button>
-        </div>
       </div>
     </div>
 
+    <!-- 内容区 -->
     <div class="content-container">
       <div class="poi-gallery">
         <div class="poi-img">
-          <img :src="spot.image" alt="景点图片" />
+          <img :src="food.image" alt="美食图片" />
         </div>
 
         <div class="poi-rating">
-          <div class="score">{{ spot.score }}分</div>
-          <div class="stars">★★★★★</div>
+          <div class="score">⭐{{ food.score }} 分    🔥热度 {{ food.hot }}</div>
         </div>
       </div>
 
       <div class="poi-summary">
         <div class="summary-item">
-          <label>景点介绍</label>
-          <div class="content">{{ spot.intro }}</div>
+          <label>美食介绍</label>
+          <div class="content">{{ food.intro }}</div>
         </div>
         <div class="summary-item">
-          <label>景点地址</label>
-          <div class="content">{{ spot.address }}</div>
+          <label>店铺名称</label>
+          <div class="content">{{ food.shopName }}</div>
+        </div>
+        <div class="summary-item">
+          <label>距离此处</label>
+          <div class="content">{{ food.distance }} km</div>
         </div>
       </div>
     </div>
@@ -46,86 +43,68 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import axios from 'axios'
 import NavBar_black from '../components/layout/NavBar_black.vue'
 import { useUserStore } from '@/stores/user'
 
 export default {
-  name: "SpotDetail",
+  name: "FoodDetail",
   components: {
     NavBar_black
   },
   setup() {
     const route = useRoute()
-    const router = useRouter()
     const userStore = useUserStore()
     const token = userStore.token
 
-  
     // 接口地址
     const API = {
-      spotDetail: 'http://localhost:3000/spots',   // 本地
-      // spotDetail: '/api/spots',                 // 真实后端
+      foodDetail: 'http://localhost:3000/foods',   // 本地
+      // foodDetail: '/api/foods',                 // 真实后端
     }
 
-    const spotId = route.params.id
-    const spot = ref({
+    const foodId = route.params.id
+    const food = ref({
       name: '',
-      nameEn: '',
+      shopName: '',
       image: '',
       score: '',
+      hot: '',
+      category: '',
       intro: '',
-      address: ''
+      distance: ''
     })
 
-    // =============================================
-    // ✅ 标准兼容请求（你规定的终极模式）
-    // =============================================
-    const getSpotDetail = async () => {
+
+    const getFoodDetail = async () => {
       try {
-        const res = await axios.get(`${API.spotDetail}/${spotId}`, {
+        const res = await axios.get(`${API.foodDetail}/${foodId}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
 
-        const isLocal = API.spotDetail.includes('localhost')
+        const isLocal = API.foodDetail.includes('localhost')
         if (isLocal) {
-          spot.value = res.data
+          food.value = res.data
         } else {
           if (res.data.code === 200) {
-            spot.value = res.data.data
+            food.value = res.data.data
           } else {
-            alert(res.data.msg || '获取景点失败')
+            alert(res.data.msg || '获取美食详情失败')
           }
         }
       } catch (err) {
         console.error(err)
-        alert('获取景点详情异常')
+        alert('获取美食详情异常')
       }
     }
 
-    const goToTravelNotes = () => {
-      router.push({
-        path: '/searchpage',
-        query: { keyword: spot.value.name }
-      })
-    }
-
-    const goToFood = () => {
-      router.push({
-        path: '/foodrecommend',
-        query: { spotId: spotId }
-      })
-    }
-
     onMounted(() => {
-      getSpotDetail()
+      getFoodDetail()
     })
 
     return {
-      spot,
-      goToTravelNotes,
-      goToFood
+      food
     }
   }
 }
@@ -135,6 +114,7 @@ export default {
 .page-wrap {
   width: 100%;
 }
+
 .poi-title-block {
   margin-top: 40px;
   width: 100%;
@@ -156,31 +136,17 @@ export default {
 }
 .poi-title-block small {
   display: block;
-  font-size: 30px;
-  color: #147850;
+  font-size: 24px;
+  color: #666;
   margin-top: 4px;
 }
-.action-buttons {
-  display: flex;
-  gap: 12px;
-}
-.write-btn {
-  background: #0e61ac;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-.write-btn:hover {
-  background: #0b508c;
-}
+
 .content-container {
   width: 1000px;
   margin: 0 auto;
   padding: 25px 0;
 }
+
 .poi-gallery {
   display: flex;
   gap: 30px;
@@ -192,7 +158,9 @@ export default {
 .poi-img img {
   width: 360px;
   height: auto;
+  object-fit: cover;
 }
+
 .poi-rating {
   display: flex;
   flex-direction: column;
@@ -203,10 +171,7 @@ export default {
   color: #147850;
   font-weight: bold;
 }
-.stars {
-  color: #ffc107;
-  font-size: 18px;
-}
+
 .poi-summary {
   margin-top: 20px;
 }

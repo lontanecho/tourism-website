@@ -39,35 +39,61 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user' // 修复：导入用户状态
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
-const userStore = useUserStore() 
-
+const userStore = useUserStore()
 
 const username = ref('')
 const password = ref('')
 
+// 接口地址
+const API = {
+  login: 'http://localhost:3000/users',    // 本地 json-server
+  // login: '/api/users/login',             // 真实后端
+}
+
+
 async function handleLogin() {
+  if (!username.value || !password.value) {
+    alert('请输入账号密码')
+    return
+  }
+
   try {
-    // 抓取所有用户
-    const res = await axios.get('http://localhost:3000/users')
-    const userList = res.data
+    const isLocal = API.login.includes('localhost')
+    if (isLocal) {
+      const res = await axios.get(API.login, {
+        params: { username: username.value, password: password.value }
+      })
+      const userList = res.data
+      const findUser = userList?.[0]
 
-    // 匹配用户
-    const findUser = userList.find(item => 
-      item.username === username.value && 
-      item.password === password.value
-    )
-
-    if (findUser) {
-      userStore.login(findUser)
-      router.push('/')
-    } else {
-      alert('账号或密码错误')
+      if (findUser) {
+        userStore.login(findUser)
+        router.push('/')
+      } else {
+        alert('账号或密码错误')
+      }
     }
+    else {
+      const res = await axios.post(API.login, {
+        username: username.value,
+        password: password.value
+      })
+
+      if (res.data.code === 200) {
+        const user = res.data.data
+        userStore.login(user)
+        router.push('/')
+      } else {
+        alert(res.data.msg || '登录失败')
+      }
+    }
+
   } catch (err) {
-    alert('登录失败：' + err.message)
+    console.error(err)
+    alert('登录异常：' + err.message)
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <div class="banner-slider">
       <img :src="list[current].img" alt="背景底图" />
 
-      //轮播图
+      
       <div
         class="slider-item"
         v-for="(item, index) in list"
@@ -29,19 +29,19 @@ export default {
       timer: null,
       list: [
         {
-          img: '/src/assets/images/马尔代夫.jpg', 
-          title: '探索马尔代夫',
-          sub: '享受碧海蓝天，体验极致海岛风情'
+          img: '/src/assets/images/万里长城.jpg', 
+          title: '万里长城',
+          sub: '不到长城非好汉，感受千年历史气魄'
         },
         {
-          img: '/src/assets/images/瑞士雪山.jpg',
-          title: '遇见瑞士雪山',
-          sub: '纯净湖泊与巍峨雪山，童话般的世界'
+          img: '/src/assets/images/北京故宫.jpg',
+          title: '北京故宫',
+          sub: '明清皇家宫殿，中华古建筑巅峰'
         },
         {
-          img: '/src/assets/images/日本京都.jpg',
-          title: '行走京都古巷',
-          sub: '千年古都，日式风情，四季皆景'
+          img: '/src/assets/images/杭州西湖.jpg',
+          title: '杭州西湖',
+          sub: '人间天堂，一步一景，四季如画'
         }
       ]
     }
@@ -95,9 +95,9 @@ export default {
 
 .slider-item img {
   position:absolute;
-  width: 45%;
+  width: 50%;
   height: 100%;
-  left:20%;
+  left:25%;
   right:5%;
   filter: blur(0px);
   object-fit: cover; 

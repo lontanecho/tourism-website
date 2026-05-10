@@ -67,9 +67,16 @@ import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
 const router = useRouter()
+const token = userStore.token
+// 接口地址
+const API = {
+  articles: 'http://localhost:3000/articles',   // 本地
+  // articles: '/api/articles/my',              // 真实后端
+}
 
 // 背景图
-const bgImage = ref('https://picsum.photos/1920/480?random=10')
+// 优先用户自带背景图，没有则用默认随机图
+const bgImage = ref(userStore.userInfo?.bgCover || 'https://picsum.photos/1920/480?random=10')
 const handleBgUpload = (e) => {
   const file = e.target.files[0]
   if (file) {
@@ -80,14 +87,31 @@ const handleBgUpload = (e) => {
 // 我的游记列表
 const myArticleList = ref([])
 
-// 获取当前用户自己的游记
+// 获取我的游记
 const getMyArticle = async () => {
+  if (!userStore.userInfo?.id) return
+
   try {
-    const res = await axios.get('http://localhost:3000/articles')
-    // 筛选只属于当前登录用户的游记
-    myArticleList.value = res.data.filter(item => 
-      item.userId === userStore.userInfo?.id
+    const res = await axios.get(API.articles, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    const isLocal = API.articles.includes('localhost')
+    let list = []
+
+    if (isLocal) {
+      list = res.data
+    } else {
+      if (res.data.code === 200) {
+        list = res.data.data
+      }
+    }
+
+    // 筛选自己的文章
+    myArticleList.value = list.filter(item => 
+      item.userId === userStore.userInfo.id
     )
+
   } catch (err) {
     console.error('获取我的游记失败', err)
   }

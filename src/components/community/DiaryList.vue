@@ -43,12 +43,9 @@
 
       <!-- 右侧：游记列表 -->
       <div class="article-list">
-        <!-- 顶部栏：标题 + 排序 + 两个按钮并排 -->
         <div class="top-bar">
           <div class="tab-bar">
             <div class="tab-item active">游记推荐</div>
-
-            <!-- 排序下拉菜单 -->
             <div class="sort-dropdown">
               <select v-model="sortBy" @change="sortArticleList">
                 <option value="default">默认排序</option>
@@ -58,7 +55,6 @@
             </div>
           </div>
 
-          
           <div class="action-buttons">
             <router-link to="/searchpage" class="write-btn">
               <span class="icon">🔍</span>
@@ -71,7 +67,6 @@
           </div>
         </div>
 
-        <!-- 游记卡片 -->
         <div 
           v-for="item in sortedArticleList" 
           :key="item.id" 
@@ -90,9 +85,7 @@
 
           <div class="card-body">
             <div class="article-info">
-              <h3 class="article-title">
-                {{ item.title }}
-              </h3>
+              <h3 class="article-title">{{ item.title }}</h3>
               <p class="article-desc">{{ item.content.replace(/<[^>]+>/g, '').slice(0, 60) }}...</p>
             </div>
             <div class="article-imgs">
@@ -113,14 +106,21 @@ import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
 const router = useRouter()
+const token = userStore.token
 
-// 真实接口文章数据
+
+// 统一接口配置
+
+const API = {
+  articleList: 'http://localhost:3000/articles', // 游记列表
+  //articlelist:'htttp://api/articlelist'
+}
+
+// 游记数据
 const articleList = ref([])
-
-// 排序字段
 const sortBy = ref('default')
 
-// 排序后的列表
+// 排序
 const sortedArticleList = computed(() => {
   const arr = [...articleList.value]
   if (sortBy.value === 'viewCount') {
@@ -132,27 +132,48 @@ const sortedArticleList = computed(() => {
   }
 })
 
-// 切换排序
 const sortArticleList = () => {}
 
-// 跳转到详情 
+// 跳转详情
 const goDetail = (id) => {
   router.push(`/article/detail/${id}`)
 }
 
-// 后端接口
-onMounted(async () => {
+
+// 获取游记列表（统一规范）
+const getArticleList = async () => {
   try {
-    const res = await axios.get('http://localhost:3000/articles')
-    articleList.value = res.data
+    const res = await axios.get(API.articleList, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+
+    const isLocal = API.articleList.includes('localhost')
+
+    if (isLocal) {
+      // 本地模拟
+      articleList.value = res.data
+    } else {
+      // 真实后端
+      if (res.data.code === 200) {
+        articleList.value = res.data.data
+      } else {
+        alert(res.data.msg || '获取失败')
+      }
+    }
+
   } catch (err) {
-    console.error('获取游记列表失败：', err)
+    console.error(err)
+    alert('网络异常')
   }
+}
+onMounted(() => {
+  getArticleList()
 })
 </script>
 
 <style scoped>
-/* 基础样式 */
+/* 你的样式完全不动 */
 .community-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -267,7 +288,6 @@ onMounted(async () => {
   position: relative;
 }
 
-
 .tab-bar {
   display: flex;
   align-items: center;
@@ -281,7 +301,6 @@ onMounted(async () => {
   position: relative;
 }
 
-/* 排序下拉框 */
 .sort-dropdown select {
   padding: 6px 10px;
   border: 1px solid #ddd;
@@ -295,13 +314,11 @@ onMounted(async () => {
   border-color: #0e61ac;
 }
 
-
 .action-buttons {
   display: flex;
   gap: 10px; 
 }
 
-/* 按钮样式 */
 .write-btn {
   display: flex;
   align-items: center;
@@ -324,7 +341,6 @@ onMounted(async () => {
   font-size: 18px;
 }
 
-/* 卡片 */
 .article-card {
   border-bottom: 1px solid #f0f0f0;
   padding: 15px 0;
@@ -389,6 +405,4 @@ onMounted(async () => {
   object-fit: cover;
   border-radius: 2px;
 }
-
-
 </style>

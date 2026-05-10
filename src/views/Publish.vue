@@ -19,7 +19,6 @@
       </div>
 
       <img v-else :src="coverPreview" class="cover-preview-img" />
-
       <input ref="coverInput" type="file" accept="image/*" style="display: none" @change="onCoverChange" />
     </div>
 
@@ -34,6 +33,7 @@
         class="editor-area"
         contenteditable="true"
         placeholder="开始写你的游记吧..."
+        @input="saveSelection"
       ></div>
 
       <!-- 插入段落弹窗 -->
@@ -67,23 +67,30 @@
             <span class="tool-icon">➕</span>
             <span>插入段落</span>
           </div>
-          <div class="tool-item">
+
+          <!-- 表情按钮 相对定位 右侧弹出 -->
+          <div class="tool-item emoji-wrap" @click.stop="showEmojiPanel = !showEmojiPanel">
             <span class="tool-icon">😊</span>
             <span>插入表情</span>
+            
+            <!-- 表情面板 右侧 -->
+            <div v-if="showEmojiPanel" class="emoji-panel" @click.stop>
+              <span
+                v-for="em in emojis"
+                :key="em"
+                class="emoji-item"
+                @click="insertEmoji(em)"
+              >
+                {{ em }}
+              </span>
+            </div>
           </div>
         </div>
 
-        <!-- ✅ 跳转到 AI 创作页面（独立页面） -->
-        <button class="ai-create-btn" @click="goToAICreate">
-          <span></span>AI 创作
-        </button>
-
-        <button class="save-draft-btn">
-          <span></span>保存草稿
-        </button>
-
+        <button class="ai-create-btn" @click="goToAICreate">AI 创作</button>
+        <button class="save-draft-btn">保存草稿</button>
         <button class="publish-btn" @click="handlePublish" :disabled="loading">
-          <span></span>{{ loading ? '发布中...' : '发布游记' }}
+          {{ loading ? '发布中...' : '发布游记' }}
         </button>
       </div>
     </div>
@@ -102,116 +109,306 @@ import NavBar_black from '@/components/layout/NavBar_black.vue'
 
 const userStore = useUserStore()
 const router = useRouter()
+const token = userStore.token
 
+// 接口地址
+const API = {
+  //uploadImage: 'http://localhost:3000/upload/image',
+  //uploadVideo: 'http://localhost:3000/upload/video',
+  //publish: 'http://localhost:3000/publish',
+
+  uploadImage: '/api/upload/image',    
+  uploadVideo: '/api/upload/video',    
+  publish: '/api/travel/publish',       
+}
+
+// 页面数据
 const title = ref('')
 const loading = ref(false)
 const showModal = ref(false)
 const paragraphTitle = ref('')
 const editorRef = ref(null)
 
+// 表情
+const showEmojiPanel = ref(false)
+const emojis = ref([
+  '😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃',
+  '😉','😊','😇','🥰','😍','🤩','😘','😗','😚','😙',
+  '😋','😛','😜','😝','🤑','🤗','🤭','🤫','🤔','🤐',
+  '🤨','😐','😑','😶','😏','🙄','😮','😯','😲','😳',
+  '🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖',
+  '😣','😞','😓','😩','😫','🥱','😴','😌','🤤','😷',
+  '👍','👎','👌','❤️','💔','🎉','🎊','🏆','🎁','⭐'
+])
+
+// 封面
 const coverInput = ref(null)
 const coverPreview = ref('')
-const coverFile = ref(null)
+let coverFile = null
 
+// 本地图片、视频临时存储
 const imageInput = ref(null)
 const videoInput = ref(null)
+const localImages = ref([])
+const localVideos = ref([])
 
-// 选择封面
+// 光标记录
+let lastRange = null
+const saveSelection = () => {
+  const sel = window.getSelection()
+  if (sel.rangeCount > 0) {
+    lastRange = sel.getRangeAt(0).cloneRange()
+  }
+}
+
+
+const restoreCursorAfterImage = (elem) => {
+  const ed = editorRef.value
+  if (!ed) return
+  const sel = window.getSelection()
+  sel.removeAllRanges()
+  const range = document.createRange()
+
+  const space = document.createTextNode('\u200B')
+  ed.appendChild(space)
+  range.setStartAfter(space)
+  range.collapse(true)
+  sel.addRange(range)
+  ed.focus()
+}
+
+// 封面选择
 const chooseCover = () => coverInput.value.click()
 const onCoverChange = (e) => {
   const file = e.target.files[0]
   if (file) {
-    coverFile.value = file
+    coverFile = file
     coverPreview.value = URL.createObjectURL(file)
   }
 }
 
 // 插入图片
-const insertImage = () => imageInput.value.click()
-const onImagesChange = async (e) => {
+const insertImage = () => {
+  saveSelection()
+  imageInput.value.click()
+}
+const onImagesChange = (e) => {
   const files = Array.from(e.target.files)
   if (!files.length) return
-
-  await nextTick()
   const ed = editorRef.value
+
   files.forEach(file => {
-    const url = URL.createObjectURL(file)
+    const localUrl = URL.createObjectURL(file)
+    localImages.value.push({ file, localUrl })
+
     const img = document.createElement('img')
-    img.src = url
+    img.src = localUrl
+    img.dataset.localUrl = localUrl
     img.style.maxWidth = '100%'
     img.style.margin = '8px 0'
     img.style.borderRadius = '6px'
-    const p = document.createElement('p')
-    p.appendChild(img)
-    ed.appendChild(p)
+    img.contentEditable = 'false'
+    ed.appendChild(img)
   })
+
+ 
+  restoreCursorAfterImage()
+  imageInput.value.value = ''
 }
 
 // 插入视频
-const insertVideo = () => videoInput.value.click()
+const insertVideo = () => {
+  saveSelection()
+  videoInput.value.click()
+}
 const onVideosChange = (e) => {
   const file = e.target.files[0]
   if (!file) return
+  const localUrl = URL.createObjectURL(file)
+  localVideos.value.push({ file, localUrl })
+
+  const ed = editorRef.value
+  const video = document.createElement('video')
+  video.src = localUrl
+  video.dataset.localUrl = localUrl
+  video.controls = true
+  video.style.maxWidth = '100%'
+  video.style.margin = '10px 0'
+  video.style.borderRadius = '8px'
+  video.contentEditable = 'false'
+  ed.appendChild(video)
+
+
+  restoreCursorAfterImage()
+  videoInput.value.value = ''
 }
 
-// 跳转到 AI 创作页面
+// 插入表情
+const insertEmoji = (em) => {
+  showEmojiPanel.value = false
+  const ed = editorRef.value
+  if (!ed) return
+  ed.focus()
+  const sel = window.getSelection()
+  if (sel.rangeCount === 0) {
+    ed.innerText += em
+    return
+  }
+  const range = sel.getRangeAt(0)
+  const textNode = document.createTextNode(em)
+  range.insertNode(textNode)
+  range.setStartAfter(textNode)
+  range.collapse(true)
+  sel.removeAllRanges()
+  sel.addRange(range)
+}
+
+// 段落标题
+const insertTitle = async () => {
+  const t = paragraphTitle.value.trim()
+  if (!t) return
+  showModal.value = false
+  await nextTick()
+  const h2 = document.createElement('h2')
+  h2.innerText = t
+  h2.style.fontSize = '22px'
+  h2.style.fontWeight = 'bold'
+  h2.style.color = '#1a1a1'
+  h2.style.margin = '20px 0 10px'
+  h2.style.paddingLeft = '12px'
+  h2.style.borderLeft = '4px solid #1677ff'
+  editorRef.value.appendChild(h2)
+  paragraphTitle.value = ''
+}
+
 const goToAICreate = () => {
   router.push('/aicreate')
 }
 
-// 插入段落标题
-const insertTitle = async () => {
-  const titleText = paragraphTitle.value.trim()
-  if (!titleText) {
-    alert('请输入段落名称')
-    return
+
+// 上传工具方法
+const uploadImage = async (file, type = 'content') => {
+  const fd = new FormData()
+  fd.append('file', file)
+  fd.append('type', type)
+
+  try {
+    const res = await axios.post(API.uploadImage, fd, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    const isLocal = API.uploadImage.includes('localhost')
+    if (isLocal) {
+      return res.data?.url || 'http://localhost:3000/test.jpg'
+    } else {
+      if (res.data.code === 200) {
+        return res.data.data.imgUrl
+      } else {
+        alert(res.data.msg || '图片上传失败')
+        return null
+      }
+    }
+  } catch (err) {
+    alert('图片上传失败')
+    return null
   }
-
-  showModal.value = false
-  await nextTick()
-  const editor = editorRef.value
-  if (!editor) return
-
-  const titleNode = document.createElement('h2')
-  titleNode.style.margin = '16px 0'
-  titleNode.style.fontSize = '22px'
-  titleNode.style.fontWeight = 'bold'
-  titleNode.textContent = titleText
-
-  editor.appendChild(titleNode)
-  paragraphTitle.value = ''
 }
 
-// 发布文章
-const handlePublish = async () => {
-  const editor = editorRef.value
-  if (!title.value || !editor?.innerText.trim()) {
-    alert('标题和内容不能为空')
-    return
+const uploadVideo = async (file) => {
+  const fd = new FormData()
+  fd.append('file', file)
+
+  try {
+    const res = await axios.post(API.uploadVideo, fd, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    const isLocal = API.uploadVideo.includes('localhost')
+    if (isLocal) {
+      return res.data?.url || 'http://localhost:3000/test.mp4'
+    } else {
+      if (res.data.code === 200) {
+        return res.data.data.videoUrl
+      } else {
+        alert(res.data.msg || '视频上传失败')
+        return null
+      }
+    }
+  } catch {
+    alert('视频上传失败')
+    return null
   }
+}
+
+
+
+// 发布游记，统一上传资源
+const handlePublish = async () => {
+  const ed = editorRef.value
+  if (!title.value) return alert('请填写标题')
+  if (!coverFile) return alert('请上传封面')
+  if (!ed?.innerText.trim()) return alert('内容不能为空')
 
   try {
     loading.value = true
-    const content = editor.innerHTML
+    alert('正在发布，请稍候...')
 
-    const article = {
-      userId: userStore.userInfo?.id || '1',
-      username: userStore.userInfo?.username || '匿名用户',
-      userAvatar: userStore.userInfo?.avatar || 'https://picsum.photos/200/200?random=1',
-      title: title.value,
-      cover: coverPreview.value || 'https://picsum.photos/400/220',
-      content: content,
-      viewCount: 0,
-      score: 0,
-      lastReplyTime: new Date().toLocaleString()
+    // 上传封面
+    const coverUrl = await uploadImage(coverFile, 'cover')
+    if (!coverUrl) return
+
+    // 上传所有图片
+    const imgs = ed.querySelectorAll('img[data-localUrl]')
+    for (let img of imgs) {
+      const localUrl = img.dataset.localUrl
+      const item = localImages.value.find(i => i.localUrl === localUrl)
+      if (item) {
+        const net = await uploadImage(item.file)
+        if (net) img.src = net
+      }
     }
 
-    await axios.post('http://localhost:3000/articles', article)
-    alert('发布成功！')
-    router.push('/community')
+    // 上传所有视频
+    const videos = ed.querySelectorAll('video[data-localUrl]')
+    for (let video of videos) {
+      const localUrl = video.dataset.localUrl
+      const item = localVideos.value.find(i => i.localUrl === localUrl)
+      if (item) {
+        const net = await uploadVideo(item.file)
+        if (net) video.src = net
+      }
+    }
+
+    //  发布
+    const params = {
+      title: title.value,
+      coverUrl: coverUrl,
+      content: ed.innerHTML,
+      user_id: userStore.userInfo.id
+    }
+
+    const res = await axios.post(API.publish, params, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    const isLocal = API.publish.includes('localhost')
+    if (isLocal) {
+      alert('发布成功（本地模拟）！')
+      router.push('/community')
+    } else {
+      if (res.data.code === 200) {
+        alert('发布成功！')
+        router.push('/community')
+      } else {
+        alert(res.data.msg || '发布失败')
+      }
+    }
+
   } catch (err) {
-    console.error(err)
-    alert('发布失败')
+    alert('发布异常，请重试')
   } finally {
     loading.value = false
   }
@@ -226,13 +423,14 @@ const handlePublish = async () => {
 }
 .header-banner {
   width: 100%;
-  height: 260px;
+  min-height: 300px;
   background: #f7f8fa;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
+  padding: 20px 0;
 }
 .cover-upload {
   display: flex;
@@ -275,9 +473,9 @@ const handlePublish = async () => {
   margin: 0;
 }
 .cover-preview-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 .title-wrap {
   max-width: 900px;
@@ -293,7 +491,7 @@ const handlePublish = async () => {
   background: #fff;
   font-size: 18px;
   padding: 0 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8 rgba(0,0,0,0.05);
 }
 .content-wrap {
   display: flex;
@@ -304,8 +502,6 @@ const handlePublish = async () => {
   align-items: flex-start;
   position: relative;
 }
-
-/* 编辑器 */
 .editor-area {
   flex: 1;
   min-height: 400px;
@@ -313,15 +509,11 @@ const handlePublish = async () => {
   font-size: 16px;
   line-height: 1.8;
   outline: none;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 .editor-area:empty::before {
   content: attr(placeholder);
   color: #ccc;
 }
-
-/* 弹窗 */
 .modal-mask {
   position: fixed;
   inset: 0;
@@ -350,7 +542,6 @@ const handlePublish = async () => {
   padding: 0 20px;
   font-size: 16px;
   outline: none;
-  box-sizing: border-box;
 }
 .tip {
   position: absolute;
@@ -373,16 +564,13 @@ const handlePublish = async () => {
   font-size: 16px;
   cursor: pointer;
 }
-
 .sidebar-tool {
   width: 260px;
   flex-shrink: 0;
   position: sticky;
   top: 100px;
 }
-.tool-group {
-  margin-bottom: 20px;
-}
+.tool-group { margin-bottom: 20px; }
 .tool-item {
   display: flex;
   align-items: center;
@@ -391,9 +579,14 @@ const handlePublish = async () => {
   font-size: 16px;
   color: #333;
   cursor: pointer;
+  position: relative;
+}
+.emoji-wrap {
+  position: relative;
 }
 .tool-icon {
-  width: 32px; height: 32px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #fff;
   border: 1px solid #1677ff;
@@ -403,8 +596,37 @@ const handlePublish = async () => {
   justify-content: center;
   font-size: 16px;
 }
-
-/* AI 创作按钮 */
+/* 表情面板 右侧弹出 */
+.emoji-panel {
+  position: absolute;
+  left: 50%;
+  top: -175px;
+  margin-left: 12px;
+  width: 260px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.15);
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  z-index: 99;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.emoji-item {
+  font-size: 22px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.emoji-item:hover {
+  background: #f5f5f5;
+}
 .ai-create-btn {
   width: 100%;
   padding: 10px 0;
@@ -414,13 +636,8 @@ const handlePublish = async () => {
   font-size: 14px;
   color: #fff;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
   margin-bottom: 12px;
 }
-
 .save-draft-btn {
   width: 100%;
   padding: 10px 0;
@@ -430,10 +647,6 @@ const handlePublish = async () => {
   font-size: 14px;
   color: #1d1a1a;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
   margin-bottom: 12px;
 }
 .publish-btn {
@@ -445,9 +658,5 @@ const handlePublish = async () => {
   font-size: 16px;
   color: #fff;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
 }
 </style>

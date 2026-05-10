@@ -1,13 +1,11 @@
 <template>
   <section class="banner">
-    <!-- 背景大图 -->
     <img 
       src="https://picsum.photos/1920/800?random=2" 
       alt="旅游背景" 
       class="banner-bg"
     />
 
-    <!-- 遮罩层 + 搜索框 -->
     <div class="search-overlay">
       <div class="search-wrapper">
         <h2 class="title">探索世界风光</h2>
@@ -25,20 +23,28 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'Banner',
-  data() {
-    return {
-      keyword: ''
-    }
-  },
-  methods: {
-    search() {
-      if (!this.keyword) return alert('请输入目的地')
-      alert('搜索：' + this.keyword)
-    }
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const keyword = ref('')
+
+const search = () => {
+  const kw = keyword.value.trim()
+  if (!kw) {
+    alert('请输入目的地')
+    return
   }
+
+  // 首页搜索 → 优先跳转到【景点】tab
+  router.push({
+    path: '/searchpage',
+    query: {
+      keyword: kw,
+      tab: 'destination'  // 这里控制优先显示景点
+    }
+  })
 }
 </script>
 
@@ -50,8 +56,6 @@ export default {
   min-height: 400px;
   overflow: hidden;
 }
-
-/* 背景大图：完全清晰 */
 .banner-bg {
   width: 100%;
   height: 100%;
@@ -60,39 +64,29 @@ export default {
   top: 0;
   left: 0;
 }
-
-
 .search-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.35); /* 轻微遮罩 */
-  
- 
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-/*搜索框外层 */
 .search-wrapper {
   text-align: center;
   width: 100%;
   max-width: 800px;
   padding: 0 20px;
 }
-
-/* 标题自适应 */
 .title {
   font-size: clamp(28px, 5vw, 48px);
   color: white;
   text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   margin-bottom: 25px;
 }
-
-/* 搜索框整体 */
 .search-box {
   display: flex;
   gap: 12px;
@@ -101,8 +95,6 @@ export default {
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
-
-/* 输入框 */
 .search-box input {
   flex: 1;
   height: 55px;
@@ -112,8 +104,6 @@ export default {
   font-size: clamp(16px, 2vw, 18px);
   border-radius: 8px;
 }
-
-/* 按钮 */
 .search-box button {
   height: 55px;
   padding: 0 30px;
@@ -125,11 +115,8 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
 }
-
 .search-box button:hover {
   background: white;
   color: #2c7dfa;
 }
-
-
 </style>

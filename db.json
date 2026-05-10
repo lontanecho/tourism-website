@@ -4,66 +4,76 @@
       "username": "小美",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=1",
+      "bgCover": "https://picsum.photos/1920/480?random=101",
       "id": "NSKfzX69tbQ"
     },
     {
       "username": "小帅",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=2",
+      "bgCover": "https://picsum.photos/1920/480?random=102",
       "id": "2ftfY_ItOSc"
     },
     {
       "username": "旅行酱",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=3",
+      "bgCover": "https://picsum.photos/1920/480?random=103",
       "id": "aB7sK9xLzQw"
     },
     {
       "username": "青山",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=4",
+      "bgCover": "https://picsum.photos/1920/480?random=104",
       "id": "kP9sR2tBvFg"
     },
     {
       "username": "小雨",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=5",
+      "bgCover": "https://picsum.photos/1920/480?random=105",
       "id": "zL5kF7gHjT2"
     },
     {
       "username": "阿文",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=6",
+      "bgCover": "https://picsum.photos/1920/480?random=106",
       "id": "mR4sP8dFgH1"
     },
     {
       "username": "小桃",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=7",
+      "bgCover": "https://picsum.photos/1920/480?random=107",
       "id": "qW3eR7tYbNd"
     },
     {
       "username": "藏地行者",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=8",
+      "bgCover": "https://picsum.photos/1920/480?random=108",
       "id": "tB6vF5sGjKl"
     },
     {
       "username": "大山",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=9",
+      "bgCover": "https://picsum.photos/1920/480?random=109",
       "id": "pO9iU7yTrEf"
     },
     {
       "username": "云海",
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=10",
+      "bgCover": "https://picsum.photos/1920/480?random=110",
       "id": "wS2dF5gHjKl"
     }
   ],
   "spots": [
     {
-      "id": 1,
+      "id": "1",
       "name": "故宫",
       "nameEn": "Forbidden City",
       "image": "https://picsum.photos/600/350?random=1",
@@ -72,7 +82,7 @@
       "address": "北京市东城区景山前街4号"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "长城",
       "nameEn": "The Great Wall",
       "image": "https://picsum.photos/600/350?random=2",
@@ -81,7 +91,7 @@
       "address": "北京市延庆区八达岭特区"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "颐和园",
       "nameEn": "Summer Palace",
       "image": "https://picsum.photos/600/350?random=3",
@@ -90,7 +100,7 @@
       "address": "北京市海淀区新建宫门路19号"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "天坛公园",
       "nameEn": "Temple of Heaven",
       "image": "https://picsum.photos/600/350??random=4",
@@ -99,7 +109,7 @@
       "address": "北京市东城区天坛东里甲1号"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "兵马俑",
       "nameEn": "Terracotta Army",
       "image": "https://picsum.photos/600/350?random=5",
@@ -108,7 +118,7 @@
       "address": "陕西省西安市临潼区秦陵北路"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "西湖",
       "nameEn": "West Lake",
       "image": "https://picsum.photos/600/350?random=6",
@@ -117,7 +127,7 @@
       "address": "浙江省杭州市西湖区西湖风景区"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "布达拉宫",
       "nameEn": "Potala Palace",
       "image": "https://picsum.photos/600/350??random=7",
@@ -126,7 +136,7 @@
       "address": "西藏自治区拉萨市城关区北京中路35号"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "张家界",
       "nameEn": "Zhangjiajie",
       "image": "https://picsum.photos/600/350?random=8",
@@ -135,7 +145,7 @@
       "address": "湖南省张家界市武陵源区金鞭路"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "黄山",
       "nameEn": "Huangshan Mountain",
       "image": "https://picsum.photos/600/350?random=9",
@@ -161,8 +171,14 @@
       "videos": [],
       "id": "art001",
       "viewCount": 320,
-      "score": 4.8,
-      "userScores": [5,5,4,5]
+      "score": 4.6,
+      "userScores": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ]
     },
     {
       "userId": "2ftfY_ItOSc",
@@ -179,7 +195,11 @@
       "id": "art002",
       "viewCount": 280,
       "score": 4.7,
-      "userScores": [5,4,5]
+      "userScores": [
+        5,
+        4,
+        5
+      ]
     },
     {
       "userId": "aB7sK9xLzQw",
@@ -195,7 +215,12 @@
       "id": "art003",
       "viewCount": 410,
       "score": 4.6,
-      "userScores": [4,5,4,5]
+      "userScores": [
+        4,
+        5,
+        4,
+        5
+      ]
     },
     {
       "userId": "kP9sR2tBvFg",
@@ -211,7 +236,11 @@
       "id": "art004",
       "viewCount": 199,
       "score": 4.5,
-      "userScores": [4,5,4]
+      "userScores": [
+        4,
+        5,
+        4
+      ]
     },
     {
       "userId": "zL5kF7gHjT2",
@@ -227,7 +256,12 @@
       "id": "art005",
       "viewCount": 720,
       "score": 4.9,
-      "userScores": [5,5,5,4]
+      "userScores": [
+        5,
+        5,
+        5,
+        4
+      ]
     },
     {
       "userId": "mR4sP8dFgH1",
@@ -243,7 +277,12 @@
       "id": "art006",
       "viewCount": 560,
       "score": 4.7,
-      "userScores": [5,4,4,5]
+      "userScores": [
+        5,
+        4,
+        4,
+        5
+      ]
     },
     {
       "userId": "qW3eR7tYbNd",
@@ -259,7 +298,12 @@
       "id": "art007",
       "viewCount": 910,
       "score": 4.9,
-      "userScores": [5,5,5,4]
+      "userScores": [
+        5,
+        5,
+        5,
+        4
+      ]
     },
     {
       "userId": "tB6vF5sGjKl",
@@ -275,7 +319,12 @@
       "id": "art008",
       "viewCount": 680,
       "score": 4.8,
-      "userScores": [5,4,5,5]
+      "userScores": [
+        5,
+        4,
+        5,
+        5
+      ]
     },
     {
       "userId": "pO9iU7yTrEf",
@@ -290,8 +339,13 @@
       "videos": [],
       "id": "art009",
       "viewCount": 850,
-      "score": 5.0,
-      "userScores": [5,5,5,5]
+      "score": 5,
+      "userScores": [
+        5,
+        5,
+        5,
+        5
+      ]
     },
     {
       "userId": "wS2dF5gHjKl",
@@ -307,54 +361,441 @@
       "id": "art010",
       "viewCount": 1200,
       "score": 4.9,
-      "userScores": [5,5,4,5]
+      "userScores": [
+        5,
+        5,
+        4,
+        5
+      ]
+    },
+    {
+      "userId": "2ftfY_ItOSc",
+      "username": "小帅",
+      "userAvatar": "https://picsum.photos/200/200?random=2",
+      "title": "故宫游记",
+      "cover": "blob:http://localhost:5173/d3c8d403-e29b-406c-897e-7df4f14c821b",
+      "content": "<h2 style=\"margin: 16px 0px; font-size: 22px; font-weight: bold;\">第一天</h2><div>我来到了故宫</div><p><img src=\"blob:http://localhost:5173/f724fafb-2539-4382-9c88-12d9b7942681\" style=\"max-width: 100%; margin: 8px 0px; border-radius: 6px;\"></p>",
+      "viewCount": 0,
+      "score": 2,
+      "createTime": "2026/5/10 10:08:16",
+      "id": "rP86Zbwu6Bc",
+      "userScores": [
+        3,
+        1
+      ]
+    },
+    {
+      "userId": "2ftfY_ItOSc",
+      "username": "小帅",
+      "userAvatar": "https://picsum.photos/200/200?random=2",
+      "title": "测试",
+      "cover": "blob:http://localhost:5173/f7e33b50-8a61-4621-aeb7-ea9e0ee21682",
+      "content": "<br><h2 style=\"font-size: 22px; font-weight: bold; color: rgb(26, 26, 26); margin: 20px 0px 10px; padding-left: 12px; border-left: 4px solid rgb(22, 119, 255);\">测试测试</h2><div>测试</div><video src=\"blob:http://localhost:5173/cbb0f2bf-423a-4eab-a4ab-3f7edd500e0f\" controls=\"\" contenteditable=\"false\" style=\"max-width: 100%; margin: 10px 0px; border-radius: 8px;\"></video><img src=\"blob:http://localhost:5173/67ec7bd0-2b52-41f1-a1ac-1eac65faa70c\" contenteditable=\"false\" style=\"max-width: 100%; margin: 8px 0px; border-radius: 6px;\">",
+      "viewCount": 0,
+      "score": 0,
+      "lastReplyTime": "2026/5/10 11:23:47",
+      "id": "zUy4xngRevc"
     }
   ],
   "comments": [
-    { "id": "c1", "articleId": "art001", "avatar": "https://picsum.photos/200/200?random=30", "username": "游客A", "content": "写得超详细，我下周就去！", "score": 5, "time": "2026/4/20 11:00:00" },
-    { "id": "c2", "articleId": "art001", "avatar": "https://picsum.photos/200/200?random=31", "username": "游客B", "content": "故宫拍照真的绝了", "score": 4, "time": "2026/4/20 11:10:00" },
-    { "id": "c3", "articleId": "art001", "avatar": "https://picsum.photos/200/200?random=32", "username": "游客C", "content": "感谢攻略，非常实用", "score": 5, "time": "2026/4/20 11:20:00" },
-    { "id": "c4", "articleId": "art002", "avatar": "https://picsum.photos/200/200?random=33", "username": "小明", "content": "爬长城真的超累但超值得", "score": 5, "time": "2026/4/20 12:00:00" },
-    { "id": "c5", "articleId": "art002", "avatar": "https://picsum.photos/200/200?random=34", "username": "小红", "content": "好汉碑一定要打卡", "score": 4, "time": "2026/4/20 12:10:00" },
-    { "id": "c6", "articleId": "art002", "avatar": "https://picsum.photos/200/200?random=35", "username": "小刚", "content": "风景无敌，推荐早上去", "score": 5, "time": "2026/4/20 12:20:00" },
-    { "id": "c7", "articleId": "art003", "avatar": "https://picsum.photos/200/200?random=36", "username": "乐乐", "content": "长廊拍照巨出片", "score": 4, "time": "2026/4/20 13:00:00" },
-    { "id": "c8", "articleId": "art003", "avatar": "https://picsum.photos/200/200?random=37", "username": "佳佳", "content": "春天的颐和园最美", "score": 5, "time": "2026/4/20 13:10:00" },
-    { "id": "c9", "articleId": "art003", "avatar": "https://picsum.photos/200/200?random=38", "username": "伟伟", "content": "皇家园林就是气派", "score": 4, "time": "2026/4/20 13:20:00" },
-    { "id": "c10", "articleId": "art004", "username": "小秋", "content": "祈年殿太震撼了", "score": 5, "time": "2026/4/20 14:00:00" },
-    { "id": "c11", "articleId": "art004", "username": "小冬", "content": "安静又庄严，很治愈", "score": 4, "time": "2026/4/20 14:10:00" },
-    { "id": "c12", "articleId": "art004", "username": "小春", "content": "推荐大家来感受历史", "score": 5, "time": "2026/4/20 14:20:00" },
-    { "id": "c13", "articleId": "art005", "username": "历史迷", "content": "世界奇迹名不虚传", "score": 5, "time": "2026/4/20 15:00:00" },
-    { "id": "c14", "articleId": "art005", "username": "旅行家", "content": "一定要请讲解！", "score": 5, "time": "2026/4/20 15:10:00" },
-    { "id": "c15", "articleId": "art005", "username": "背包客", "content": "看完太震撼了", "score": 4, "time": "2026/4/20 15:20:00" },
-    { "id": "c16", "articleId": "art006", "username": "杭州人", "content": "欢迎来杭州玩～", "score": 5, "time": "2026/4/20 16:00:00" },
-    { "id": "c17", "articleId": "art006", "username": "游客", "content": "西湖真的人间天堂", "score": 4, "time": "2026/4/20 16:10:00" },
-    { "id": "c18", "articleId": "art006", "username": "摄影爱好者", "content": "拍照圣地", "score": 5, "time": "2026/4/20 16:20:00" },
-    { "id": "c19", "articleId": "art007", "username": "朝圣者", "content": "心灵被净化了", "score": 5, "time": "2026/4/20 17:00:00" },
-    { "id": "c20", "articleId": "art007", "username": "驴友", "content": "高反注意安全", "score": 4, "time": "2026/4/20 17:10:00" },
-    { "id": "c21", "articleId": "art007", "username": "信仰者", "content": "神圣庄严，值得一去", "score": 5, "time": "2026/4/20 17:20:00" },
-    { "id": "c22", "articleId": "art008", "username": "阿凡达迷", "content": "悬浮山原型太美了", "score": 5, "time": "2026/4/20 18:00:00" },
-    { "id": "c23", "articleId": "art008", "username": "登山爱好者", "content": "奇峰怪石太壮观", "score": 4, "time": "2026/4/20 18:10:00" },
-    { "id": "c24", "articleId": "art008", "username": "自然控", "content": "云雾缭绕像仙境", "score": 5, "time": "2026/4/20 18:20:00" },
-    { "id": "c25", "articleId": "art009", "username": "黄山常客", "content": "黄山真的太美了", "score": 5, "time": "2026/4/20 19:00:00" },
-    { "id": "c26", "articleId": "art009", "username": "风光摄影师", "content": "云海绝了", "score": 5, "time": "2026/4/20 19:10:00" },
-    { "id": "c27", "articleId": "art009", "username": "爬山爱好者", "content": "累并快乐着", "score": 5, "time": "2026/4/20 19:20:00" },
-    { "id": "c28", "articleId": "art010", "username": "攻略达人", "content": "这攻略太全了", "score": 5, "time": "2026/4/20 20:00:00" },
-    { "id": "c29", "articleId": "art010", "username": "准备出发", "content": "收藏了，马上用", "score": 4, "time": "2026/4/20 20:10:00" },
-    { "id": "c30", "articleId": "art010", "username": "旅游爱好者", "content": "祖国山河太壮丽", "score": 5, "time": "2026/4/20 20:20:00" }
+    {
+      "id": "c1",
+      "articleId": "art001",
+      "avatar": "https://picsum.photos/200/200?random=30",
+      "username": "游客A",
+      "content": "写得超详细，我下周就去！",
+      "score": 5,
+      "time": "2026/4/20 11:00:00"
+    },
+    {
+      "id": "c2",
+      "articleId": "art001",
+      "avatar": "https://picsum.photos/200/200?random=31",
+      "username": "游客B",
+      "content": "故宫拍照真的绝了",
+      "score": 4,
+      "time": "2026/4/20 11:10:00"
+    },
+    {
+      "id": "c3",
+      "articleId": "art001",
+      "avatar": "https://picsum.photos/200/200?random=32",
+      "username": "游客C",
+      "content": "感谢攻略，非常实用",
+      "score": 5,
+      "time": "2026/4/20 11:20:00"
+    },
+    {
+      "id": "c4",
+      "articleId": "art002",
+      "avatar": "https://picsum.photos/200/200?random=33",
+      "username": "小明",
+      "content": "爬长城真的超累但超值得",
+      "score": 5,
+      "time": "2026/4/20 12:00:00"
+    },
+    {
+      "id": "c5",
+      "articleId": "art002",
+      "avatar": "https://picsum.photos/200/200?random=34",
+      "username": "小红",
+      "content": "好汉碑一定要打卡",
+      "score": 4,
+      "time": "2026/4/20 12:10:00"
+    },
+    {
+      "id": "c6",
+      "articleId": "art002",
+      "avatar": "https://picsum.photos/200/200?random=35",
+      "username": "小刚",
+      "content": "风景无敌，推荐早上去",
+      "score": 5,
+      "time": "2026/4/20 12:20:00"
+    },
+    {
+      "id": "c7",
+      "articleId": "art003",
+      "avatar": "https://picsum.photos/200/200?random=36",
+      "username": "乐乐",
+      "content": "长廊拍照巨出片",
+      "score": 4,
+      "time": "2026/4/20 13:00:00"
+    },
+    {
+      "id": "c8",
+      "articleId": "art003",
+      "avatar": "https://picsum.photos/200/200?random=37",
+      "username": "佳佳",
+      "content": "春天的颐和园最美",
+      "score": 5,
+      "time": "2026/4/20 13:10:00"
+    },
+    {
+      "id": "c9",
+      "articleId": "art003",
+      "avatar": "https://picsum.photos/200/200?random=38",
+      "username": "伟伟",
+      "content": "皇家园林就是气派",
+      "score": 4,
+      "time": "2026/4/20 13:20:00"
+    },
+    {
+      "id": "c10",
+      "articleId": "art004",
+      "username": "小秋",
+      "content": "祈年殿太震撼了",
+      "score": 5,
+      "time": "2026/4/20 14:00:00"
+    },
+    {
+      "id": "c11",
+      "articleId": "art004",
+      "username": "小冬",
+      "content": "安静又庄严，很治愈",
+      "score": 4,
+      "time": "2026/4/20 14:10:00"
+    },
+    {
+      "id": "c12",
+      "articleId": "art004",
+      "username": "小春",
+      "content": "推荐大家来感受历史",
+      "score": 5,
+      "time": "2026/4/20 14:20:00"
+    },
+    {
+      "id": "c13",
+      "articleId": "art005",
+      "username": "历史迷",
+      "content": "世界奇迹名不虚传",
+      "score": 5,
+      "time": "2026/4/20 15:00:00"
+    },
+    {
+      "id": "c14",
+      "articleId": "art005",
+      "username": "旅行家",
+      "content": "一定要请讲解！",
+      "score": 5,
+      "time": "2026/4/20 15:10:00"
+    },
+    {
+      "id": "c15",
+      "articleId": "art005",
+      "username": "背包客",
+      "content": "看完太震撼了",
+      "score": 4,
+      "time": "2026/4/20 15:20:00"
+    },
+    {
+      "id": "c16",
+      "articleId": "art006",
+      "username": "杭州人",
+      "content": "欢迎来杭州玩～",
+      "score": 5,
+      "time": "2026/4/20 16:00:00"
+    },
+    {
+      "id": "c17",
+      "articleId": "art006",
+      "username": "游客",
+      "content": "西湖真的人间天堂",
+      "score": 4,
+      "time": "2026/4/20 16:10:00"
+    },
+    {
+      "id": "c18",
+      "articleId": "art006",
+      "username": "摄影爱好者",
+      "content": "拍照圣地",
+      "score": 5,
+      "time": "2026/4/20 16:20:00"
+    },
+    {
+      "id": "c19",
+      "articleId": "art007",
+      "username": "朝圣者",
+      "content": "心灵被净化了",
+      "score": 5,
+      "time": "2026/4/20 17:00:00"
+    },
+    {
+      "id": "c20",
+      "articleId": "art007",
+      "username": "驴友",
+      "content": "高反注意安全",
+      "score": 4,
+      "time": "2026/4/20 17:10:00"
+    },
+    {
+      "id": "c21",
+      "articleId": "art007",
+      "username": "信仰者",
+      "content": "神圣庄严，值得一去",
+      "score": 5,
+      "time": "2026/4/20 17:20:00"
+    },
+    {
+      "id": "c22",
+      "articleId": "art008",
+      "username": "阿凡达迷",
+      "content": "悬浮山原型太美了",
+      "score": 5,
+      "time": "2026/4/20 18:00:00"
+    },
+    {
+      "id": "c23",
+      "articleId": "art008",
+      "username": "登山爱好者",
+      "content": "奇峰怪石太壮观",
+      "score": 4,
+      "time": "2026/4/20 18:10:00"
+    },
+    {
+      "id": "c24",
+      "articleId": "art008",
+      "username": "自然控",
+      "content": "云雾缭绕像仙境",
+      "score": 5,
+      "time": "2026/4/20 18:20:00"
+    },
+    {
+      "id": "c25",
+      "articleId": "art009",
+      "username": "黄山常客",
+      "content": "黄山真的太美了",
+      "score": 5,
+      "time": "2026/4/20 19:00:00"
+    },
+    {
+      "id": "c26",
+      "articleId": "art009",
+      "username": "风光摄影师",
+      "content": "云海绝了",
+      "score": 5,
+      "time": "2026/4/20 19:10:00"
+    },
+    {
+      "id": "c27",
+      "articleId": "art009",
+      "username": "爬山爱好者",
+      "content": "累并快乐着",
+      "score": 5,
+      "time": "2026/4/20 19:20:00"
+    },
+    {
+      "id": "c28",
+      "articleId": "art010",
+      "username": "攻略达人",
+      "content": "这攻略太全了",
+      "score": 5,
+      "time": "2026/4/20 20:00:00"
+    },
+    {
+      "id": "c29",
+      "articleId": "art010",
+      "username": "准备出发",
+      "content": "收藏了，马上用",
+      "score": 4,
+      "time": "2026/4/20 20:10:00"
+    },
+    {
+      "id": "c30",
+      "articleId": "art010",
+      "username": "旅游爱好者",
+      "content": "祖国山河太壮丽",
+      "score": 5,
+      "time": "2026/4/20 20:20:00"
+    },
+    {
+      "articleId": "rP86Zbwu6Bc",
+      "avatar": "https://picsum.photos/200/200?random=2",
+      "username": "小帅",
+      "content": "可以呀",
+      "score": 3,
+      "time": "2026/5/10 10:09:31",
+      "id": "EWxURZ0f-vc"
+    },
+    {
+      "articleId": "rP86Zbwu6Bc",
+      "avatar": "https://picsum.photos/200/200?random=2",
+      "username": "小帅",
+      "content": "不好",
+      "score": 1,
+      "time": "2026/5/10 10:09:50",
+      "id": "Wn-dbrfOUY4"
+    },
+    {
+      "articleId": "art001",
+      "avatar": "https://picsum.photos/200/200?random=2",
+      "username": "小帅",
+      "content": "很好",
+      "score": 4,
+      "time": "2026/5/10 14:21:52",
+      "id": "imsnkFk0Ry0"
+    }
   ],
-
   "foods": [
-    { "id": 101, "spotId": 1, "name": "宫廷糕点", "category": "小吃", "shopName": "御膳房", "score": 4.9, "hot": 99, "distance": 0.2, "image": "https://picsum.photos/300/200?1", "intro": "皇家风味" },
-    { "id": 102, "spotId": 1, "name": "老北京炸酱面", "category": "面食", "shopName": "南门小吃", "score": 4.8, "hot": 95, "distance": 0.4, "image": "https://picsum.photos/300/200?2", "intro": "正宗老北京" },
-    { "id": 103, "spotId": 2, "name": "长城烤肠", "category": "小吃", "shopName": "关口小店", "score": 4.7, "hot": 90, "distance": 0.3, "image": "https://picsum.photos/300/200?3", "intro": "登山必备" },
-    { "id": 104, "spotId": 3, "name": "苏州糕点", "category": "小吃", "shopName": "颐和甜品", "score": 4.8, "hot": 92, "distance": 0.5, "image": "https://picsum.photos/300/200?4", "intro": "江南风味" },
-    { "id": 105, "spotId": 4, "name": "北京烤鸭", "category": "粤菜", "shopName": "全福德", "score": 4.9, "hot": 98, "distance": 1.0, "image": "https://picsum.photos/300/200?5", "intro": "外酥里嫩" },
-    { "id": 106, "spotId": 5, "name": "肉夹馍", "category": "小吃", "shopName": "秦味小吃", "score": 4.8, "hot": 96, "distance": 0.6, "image": "https://picsum.photos/300/200?6", "intro": "陕西特色" },
-    { "id": 107, "spotId": 6, "name": "西湖醋鱼", "category": "粤菜", "shopName": "楼外楼", "score": 4.9, "hot": 97, "distance": 0.4, "image": "https://picsum.photos/300/200?7", "intro": "酸甜鲜嫩" },
-    { "id": 108, "spotId": 7, "name": "酥油茶", "category": "小吃", "shopName": "藏家小店", "score": 4.7, "hot": 88, "distance": 0.8, "image": "https://picsum.photos/300/200?8", "intro": "高原特色" },
-    { "id": 109, "spotId": 8, "name": "三下锅", "category": "川菜", "shopName": "湘西菜馆", "score": 4.8, "hot": 93, "distance": 1.2, "image": "https://picsum.photos/300/200?9", "intro": "香辣过瘾" },
-    { "id": 110, "spotId": 9, "name": "黄山烧饼", "category": "小吃", "shopName": "老街烧饼", "score": 4.9, "hot": 94, "distance": 0.3, "image": "https://picsum.photos/300/200?10", "intro": "酥脆咸香" }
+    {
+      "id": "101",
+      "spotId": 1,
+      "name": "宫廷糕点",
+      "category": "小吃",
+      "shopName": "御膳房",
+      "score": 4.9,
+      "hot": 99,
+      "distance": 0.2,
+      "image": "https://picsum.photos/300/200?1",
+      "intro": "皇家风味"
+    },
+    {
+      "id": "102",
+      "spotId": 1,
+      "name": "老北京炸酱面",
+      "category": "面食",
+      "shopName": "南门小吃",
+      "score": 4.8,
+      "hot": 95,
+      "distance": 0.4,
+      "image": "https://picsum.photos/300/200?2",
+      "intro": "正宗老北京"
+    },
+    {
+      "id": "103",
+      "spotId": 2,
+      "name": "长城烤肠",
+      "category": "小吃",
+      "shopName": "关口小店",
+      "score": 4.7,
+      "hot": 90,
+      "distance": 0.3,
+      "image": "https://picsum.photos/300/200?3",
+      "intro": "登山必备"
+    },
+    {
+      "id": "104",
+      "spotId": 3,
+      "name": "苏州糕点",
+      "category": "小吃",
+      "shopName": "颐和甜品",
+      "score": 4.8,
+      "hot": 92,
+      "distance": 0.5,
+      "image": "https://picsum.photos/300/200?4",
+      "intro": "江南风味"
+    },
+    {
+      "id": "105",
+      "spotId": 4,
+      "name": "北京烤鸭",
+      "category": "粤菜",
+      "shopName": "全福德",
+      "score": 4.9,
+      "hot": 98,
+      "distance": 1,
+      "image": "https://picsum.photos/300/200?5",
+      "intro": "外酥里嫩"
+    },
+    {
+      "id": "106",
+      "spotId": 5,
+      "name": "肉夹馍",
+      "category": "小吃",
+      "shopName": "秦味小吃",
+      "score": 4.8,
+      "hot": 96,
+      "distance": 0.6,
+      "image": "https://picsum.photos/300/200?6",
+      "intro": "陕西特色"
+    },
+    {
+      "id": "107",
+      "spotId": 6,
+      "name": "西湖醋鱼",
+      "category": "粤菜",
+      "shopName": "楼外楼",
+      "score": 4.9,
+      "hot": 97,
+      "distance": 0.4,
+      "image": "https://picsum.photos/300/200?7",
+      "intro": "酸甜鲜嫩"
+    },
+    {
+      "id": "108",
+      "spotId": 7,
+      "name": "酥油茶",
+      "category": "小吃",
+      "shopName": "藏家小店",
+      "score": 4.7,
+      "hot": 88,
+      "distance": 0.8,
+      "image": "https://picsum.photos/300/200?8",
+      "intro": "高原特色"
+    },
+    {
+      "id": "109",
+      "spotId": 8,
+      "name": "三下锅",
+      "category": "川菜",
+      "shopName": "湘西菜馆",
+      "score": 4.8,
+      "hot": 93,
+      "distance": 1.2,
+      "image": "https://picsum.photos/300/200?9",
+      "intro": "香辣过瘾"
+    },
+    {
+      "id": "110",
+      "spotId": 9,
+      "name": "黄山烧饼",
+      "category": "小吃",
+      "shopName": "老街烧饼",
+      "score": 4.9,
+      "hot": 94,
+      "distance": 0.3,
+      "image": "https://picsum.photos/300/200?10",
+      "intro": "酥脆咸香"
+    }
   ]
-  
   
 }

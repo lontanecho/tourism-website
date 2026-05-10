@@ -12,9 +12,6 @@
           <li>
             <router-link to="/community" active-class="active">社区</router-link>
           </li>
-          <li>
-            <router-link to="/foodrecommend" active-class="active">美食</router-link>
-          </li>
           
         </ul>
       </nav>

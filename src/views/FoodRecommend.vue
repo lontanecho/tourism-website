@@ -5,13 +5,19 @@
         {{ spotName }} · 美食推荐
       </h2>
 
-      <div class="search-box">
+      
+      <div class="search-bar">
         <input
           v-model="searchKey"
           type="text"
+          class="search-input"
           placeholder="搜索美食、菜系、店铺/窗口"
           @input="refreshList"
+          @keyup.enter="refreshList"
         />
+        <button class="search-btn" @click="refreshList">
+          <span class="icon">🔍</span>搜索
+        </button>
       </div>
 
       <div class="filter-bar">
@@ -36,7 +42,7 @@
       </div>
 
       <div class="food-list">
-        <div class="food-card" v-for="food in top10List" :key="food.id">
+        <div class="food-card" v-for="food in top10List" :key="food.id" @click="goFoodDetail(food.id)" style="cursor:pointer">
           <div class="food-img">
             <img :src="food.image" alt="" />
           </div>
@@ -63,10 +69,26 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'  // 👈 加了 useRouter
 import axios from 'axios'
+import { useUserStore } from '@/stores/user'
 
 const route = useRoute()
+const router = useRouter() // 👈 加了 router
+const userStore = useUserStore()
+const token = userStore.token
+
+
+// 统一接口配置
+
+const API = {
+  spots: 'http://localhost:3000/spots',
+  foods: 'http://localhost:3000/foods',
+  //spots: 'https://api/spots',
+  //foods: 'https://api/foods',
+}
+  
+
 const spotId = computed(() => route.query.spotId || '')
 const spotName = ref('加载中...')
 
@@ -76,53 +98,78 @@ const top10List = ref([])
 const categoryList = ref([])
 const allFood = ref([])
 
-// 获取当前景点名称
+// 获取景点名称
 const getSpotName = async () => {
-  const res = await axios.get(`http://localhost:3000/spots/${spotId.value}`)
-  spotName.value = res.data.name
+  if (!spotId.value) return
+  try {
+    const res = await axios.get(`${API.spots}/${spotId.value}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    const isLocal = API.spots.includes('localhost')
+    if (isLocal) {
+      spotName.value = res.data.name || '未知景点'
+    } else {
+      if (res.data.code === 200) {
+        spotName.value = res.data.data.name || '未知景点'
+      }
+    }
+  } catch (err) {
+    spotName.value = '获取失败'
+  }
 }
 
-// 获取该景点所有美食
+// 获取美食列表
 const getFoodList = async () => {
-  const res = await axios.get('http://localhost:3000/foods', {
-    params: { spotId: spotId.value }
-  })
-  allFood.value = res.data
-  // 提取该景点拥有的菜系（去重）
-  const cats = [...new Set(res.data.map(item => item.category))]
-  categoryList.value = cats
+  if (!spotId.value) return
+  try {
+    const res = await axios.get(API.foods, {
+      params: { spotId: spotId.value },
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    const isLocal = API.foods.includes('localhost')
+    let data = isLocal ? res.data : (res.data.code === 200 ? res.data.data : [])
+    allFood.value = data
+    const cats = [...new Set(data.map(item => item.category))]
+    categoryList.value = cats
+  } catch (err) {
+    allFood.value = []
+    categoryList.value = []
+  }
 }
 
-// 模糊匹配
+// 模糊搜索
 const fuzzyMatch = (food, key) => {
   if (!key) return true
   const k = key.toLowerCase()
   return (
-    food.name.toLowerCase().includes(k) ||
-    food.category.toLowerCase().includes(k) ||
-    food.shopName.toLowerCase().includes(k)
+    food.name?.toLowerCase().includes(k) ||
+    food.category?.toLowerCase().includes(k) ||
+    food.shopName?.toLowerCase().includes(k)
   )
 }
 
-// 筛选 + 排序
+// 筛选排序
 const refreshList = () => {
   let list = [...allFood.value]
-
   if (filter.value.category !== '全部') {
     list = list.filter(i => i.category === filter.value.category)
   }
-
   list = list.filter(i => fuzzyMatch(i, searchKey.value))
 
   if (filter.value.sortBy === 'hot') {
-    list.sort((a, b) => b.hot - a.hot)
+    list.sort((a, b) => (b.hot || 0) - (a.hot || 0))
   } else if (filter.value.sortBy === 'score') {
-    list.sort((a, b) => b.score - a.score)
+    list.sort((a, b) => (b.score || 0) - (a.score || 0))
   } else if (filter.value.sortBy === 'distance') {
-    list.sort((a, b) => a.distance - b.distance)
+    list.sort((a, b) => (a.distance || 0) - (b.distance || 0))
   }
 
   top10List.value = list.slice(0, 10)
+}
+
+// 跳转美食详情 ✅ 现在正常了
+const goFoodDetail = (id) => {
+  router.push(`/food-detail/${id}`)
 }
 
 onMounted(async () => {
@@ -148,18 +195,47 @@ onMounted(async () => {
   margin-bottom: 20px;
   color: #333;
 }
-.search-box {
-  margin-bottom: 16px;
+
+/* =============================================
+🔍 统一搜索框样式（和景点/游记页面完全一样）
+============================================= */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.search-box input {
-  width: 100%;
+.search-input {
+  flex: 1;
   padding: 12px 16px;
+  font-size: 15px;
   border: 1px solid #eee;
   border-radius: 10px;
   outline: none;
-  font-size: 15px;
-  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+.search-input:focus {
+  border-color: #0e61ac;
+}
+.search-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 18px;
+  background: #0e61ac;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.search-btn:hover {
+  background: #0b508c;
+}
+.search-btn .icon {
+  font-size: 16px;
+}
+
 .filter-bar {
   display: flex;
   gap: 20px;

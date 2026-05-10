@@ -6,7 +6,6 @@
         <p>精选优质旅游目的地，总有一处适合你</p>
       </div>
       <div class="destination-list">
-        <!-- 点击卡片跳转到详情 -->
         <div 
           class="destination-card" 
           v-for="item in destinations" 
@@ -28,18 +27,39 @@
 <script>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import { useRouter } from 'vue-router'  // 加路由
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
 export default {
   name: 'Destination',
   setup() {
-    const destinations = ref([])
     const router = useRouter()
+    const userStore = useUserStore()
+    const token = userStore.token
 
+   // 接口地址
+    const API = {
+      spots: 'http://localhost:3000/spots',   // 本地
+      // spots: '/api/spots/list',             // 真实后端
+    }
+
+    const destinations = ref([])
     const getDestinations = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/spots')
-        destinations.value = res.data
+        const res = await axios.get(API.spots, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+
+        const isLocal = API.spots.includes('localhost')
+        if (isLocal) {
+          destinations.value = res.data
+        } else {
+          if (res.data.code === 200) {
+            destinations.value = res.data.data
+          } else {
+            alert(res.data.msg || '获取目的地失败')
+          }
+        }
       } catch (err) {
         console.error('获取景点失败', err)
       }
@@ -56,14 +76,13 @@ export default {
 
     return {
       destinations,
-      goToDetail   // 暴露方法
+      goToDetail
     }
   }
 }
 </script>
 
 <style scoped>
-
 .destination-section {
   padding: 80px 0;
   background-color: #f9f9f9;
@@ -118,6 +137,4 @@ export default {
   border-radius: 4px;
   cursor: pointer;
 }
-
-
 </style>

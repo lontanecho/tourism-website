@@ -85,6 +85,7 @@ import axios from 'axios'
 
 const route = useRoute()
 const userStore = useUserStore()
+const token = userStore.token
 const article = ref({})
 const id = route.params.id
 
@@ -92,15 +93,44 @@ const userScore = ref(0)
 const newComment = ref('')
 const commentList = ref([])
 
+// 接口地址
+const API = {
+  article: 'http://localhost:3000/articles',
+  comment: 'http://localhost:3000/comments',
+  // article: '/api/articles',
+  // comment: '/api/comments',
+}
+
 onMounted(async () => {
   try {
-    // 获取文章
-    const res = await axios.get(`http://localhost:3000/articles/${id}`)
-    article.value = res.data
+    const isLocal = API.article.includes('localhost')
 
-    // 获取当前文章评论
-    const cRes = await axios.get(`http://localhost:3000/comments?articleId=${id}`)
-    commentList.value = cRes.data
+    // 获取文章
+    const res = await axios.get(`${API.article}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    if (isLocal) {
+      article.value = res.data
+    } else {
+      if (res.data.code === 200) {
+        article.value = res.data.data
+      }
+    }
+
+    // 获取评论
+    const cRes = await axios.get(`${API.comment}?articleId=${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+
+    if (isLocal) {
+      commentList.value = cRes.data
+    } else {
+      if (cRes.data.code === 200) {
+        commentList.value = cRes.data.data
+      }
+    }
+
   } catch (err) {
     console.error('加载失败', err)
   }
@@ -108,33 +138,52 @@ onMounted(async () => {
 
 const submitComment = async () => {
   if (!newComment.value.trim()) return
-
-  const data = {
-    articleId: id,
-    avatar: userStore.userInfo?.avatar || 'https://picsum.photos/200/200?random=99',
-    username: userStore.userInfo?.username || '游客',
-    content: newComment.value,
-    score: userScore.value,
-    time: new Date().toLocaleString()
+  if (!userStore.userInfo) {
+    alert('请先登录')
+    return
   }
 
-  await axios.post('http://localhost:3000/comments', data)
-  commentList.value.unshift(data)
+  try {
+    const isLocal = API.comment.includes('localhost')
+    const data = {
+      articleId: id,
+      avatar: userStore.userInfo?.avatar || 'https://picsum.photos/200/200?random=99',
+      username: userStore.userInfo?.username || '游客',
+      content: newComment.value,
+      score: userScore.value,
+      time: new Date().toLocaleString()
+    }
 
-  if (userScore.value > 0) {
-    if (!article.value.userScores) article.value.userScores = []
-    article.value.userScores.push(userScore.value)
-    const total = article.value.userScores.reduce((a, b) => a + b, 0)
-    article.value.score = total / article.value.userScores.length
-
-    await axios.patch(`http://localhost:3000/articles/${id}`, {
-      score: article.value.score,
-      userScores: article.value.userScores
+    // 提交评论
+    const res = await axios.post(API.comment, data, {
+      headers: { Authorization: `Bearer ${token}` }
     })
-  }
 
-  newComment.value = ''
-  userScore.value = 0
+    if (isLocal || res.data.code === 200) {
+      commentList.value.unshift(data)
+    }
+
+    // 更新评分
+    if (userScore.value > 0) {
+      if (!article.value.userScores) article.value.userScores = []
+      article.value.userScores.push(userScore.value)
+      const total = article.value.userScores.reduce((a, b) => a + b, 0)
+      article.value.score = total / article.value.userScores.length
+
+      await axios.patch(`${API.article}/${id}`, {
+        score: article.value.score,
+        userScores: article.value.userScores
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+    }
+
+    newComment.value = ''
+    userScore.value = 0
+  } catch (err) {
+    console.error(err)
+    alert('发表失败')
+  }
 }
 </script>
 

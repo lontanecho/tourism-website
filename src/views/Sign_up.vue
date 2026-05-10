@@ -55,7 +55,7 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
-import { useUserStore } from '@/stores/user' // 修复：导入用户状态
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -63,7 +63,13 @@ const username = ref('')
 const password = ref('')
 const confirmPwd = ref('')
 
-// 注册
+// 接口地址
+const API = {
+  users: 'http://localhost:3000/users',    // 本地
+  // users: '/api/users/register',          // 真实后端
+}
+
+
 async function doRegister() {
   if (!username.value || !password.value) {
     alert('请输入用户名和密码')
@@ -75,27 +81,46 @@ async function doRegister() {
   }
 
   try {
-    const checkRes = await axios.get('http://localhost:3000/users', {
-      params: {
-        username: username.value
+    const isLocal = API.users.includes('localhost')
+
+
+    if (isLocal) {
+      // 检查用户名是否存在
+      const checkRes = await axios.get(API.users, {
+        params: { username: username.value }
+      })
+      if (checkRes.data.length > 0) {
+        alert('用户名已存在')
+        return
       }
-    })
-    if (checkRes.data.length > 0) {
-      alert('用户名已存在')
-      return // 直接停止，不注册
+
+      // 注册
+      const res = await axios.post(API.users, {
+        username: username.value,
+        password: password.value,
+        avatar: 'https://picsum.photos/200/200?random=1'
+      })
+      userStore.login(res.data)
+      router.push('/')
     }
 
-    // 模拟注册
-    const res = await axios.post('http://localhost:3000/users', {
-      username: username.value,
-      password: password.value,
-      avatar: "https://picsum.photos/200/200?random=1"
-    })
-    userStore.login(res.data)
-    // 注册完成后跳首页
-    router.push('/')
+    else {
+      const res = await axios.post(API.users, {
+        username: username.value,
+        password: password.value
+      })
+
+      if (res.data.code === 200) {
+        userStore.login(res.data.data)
+        router.push('/')
+      } else {
+        alert(res.data.msg || '注册失败')
+      }
+    }
+
   } catch (err) {
-    alert('注册失败')
+    console.error(err)
+    alert('注册异常：' + err.message)
   }
 }
 </script>

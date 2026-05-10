@@ -101,6 +101,10 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import NavBar_black from '@/components/layout/NavBar_black.vue'
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
+const token = userStore.token
 
 // 图片上传相关
 const firstFrameInput = ref(null)
@@ -119,6 +123,12 @@ const resolution = ref('720p')
 const loading = ref(false)
 const videoUrl = ref('')
 const downloadLink = ref(null)
+
+// 接口地址
+const API = {
+  generate: '/api/ai/generate_video',        // 真实后端
+  // generate: 'http://localhost:3000/ai',    // 本地
+}
 
 // 选择首帧
 const chooseFirstFrame = () => {
@@ -142,13 +152,17 @@ const onLastFrameChange = (e) => {
   lastFramePreview.value = URL.createObjectURL(file)
 }
 
-//后端对接
+
 const generateVideo = async () => {
+  if (!userStore.userInfo) {
+    alert('请先登录')
+    return
+  }
+
   try {
     loading.value = true
     videoUrl.value = ''
 
-    // 构造表单数据
     const formData = new FormData()
     formData.append('first_frame', firstFrameFile.value)
     formData.append('last_frame', lastFrameFile.value)
@@ -156,15 +170,25 @@ const generateVideo = async () => {
     formData.append('duration', duration.value)
     formData.append('resolution', resolution.value)
 
-    // 调用后端接口
-    const res = await axios.post('/api/ai/generate_video', formData, {
+    const res = await axios.post(API.generate, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`
       }
     })
 
-    // 获取视频地址
-    videoUrl.value = res.data.data.video_url
+  
+    const isLocal = API.generate.includes('localhost')
+    if (isLocal) {
+      videoUrl.value = res.data?.video_url || ''
+    } else {
+      if (res.data.code === 200) {
+        videoUrl.value = res.data.data.video_url
+      } else {
+        alert(res.data.msg || '生成失败')
+      }
+    }
+
   } catch (err) {
     console.error(err)
     alert('视频生成失败，请稍后重试')
