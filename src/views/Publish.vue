@@ -244,23 +244,32 @@ const onVideosChange = (e) => {
 }
 
 // 插入表情
+// 插入表情 —— 修复光标跳到开头
 const insertEmoji = (em) => {
   showEmojiPanel.value = false
   const ed = editorRef.value
   if (!ed) return
-  ed.focus()
+
+  // 恢复上次保存的光标
   const sel = window.getSelection()
-  if (sel.rangeCount === 0) {
-    ed.innerText += em
-    return
+  if (lastRange) {
+    sel.removeAllRanges()
+    sel.addRange(lastRange)
   }
+
+  // 插入表情到光标位置
   const range = sel.getRangeAt(0)
   const textNode = document.createTextNode(em)
   range.insertNode(textNode)
+
+  // 移动光标到表情后面（关键！）
   range.setStartAfter(textNode)
   range.collapse(true)
   sel.removeAllRanges()
   sel.addRange(range)
+
+  // 保存最新光标
+  lastRange = range.cloneRange()
 }
 
 // 段落标题
