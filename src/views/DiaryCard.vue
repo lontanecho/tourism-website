@@ -22,7 +22,6 @@
           <img :src="article.userAvatar" class="avatar" />
           <div class="author-info">
             <span class="username">{{ article.username }}</span>
-            <button class="follow-btn">+关注</button>
           </div>
         </div>
 
@@ -93,49 +92,46 @@ const userScore = ref(0)
 const newComment = ref('')
 const commentList = ref([])
 
-// 接口地址
+
 const API = {
   article: 'http://localhost:3000/articles',
   comment: 'http://localhost:3000/comments',
-  // article: '/api/articles',
-  // comment: '/api/comments',
+  userInterest: 'http://localhost:3000/user/interest'
 }
 
 onMounted(async () => {
   try {
-    const isLocal = API.article.includes('localhost')
-
     // 获取文章
     const res = await axios.get(`${API.article}/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
+    article.value = res.data
 
-    if (isLocal) {
-      article.value = res.data
-    } else {
-      if (res.data.code === 200) {
-        article.value = res.data.data
-      }
+    // 浏览量 +1
+    await axios.post(`${API.article}/view`, { articleId: id })
+
+     // 添加用户兴趣
+    if (userStore.userInfo && article.value.tags) {
+      await axios.post(API.userInterest, {
+        userId: userStore.userInfo.id,
+        articleTags: article.value.tags  // 只传标签
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
     }
 
     // 获取评论
     const cRes = await axios.get(`${API.comment}?articleId=${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
-
-    if (isLocal) {
-      commentList.value = cRes.data
-    } else {
-      if (cRes.data.code === 200) {
-        commentList.value = cRes.data.data
-      }
-    }
+    commentList.value = cRes.data
 
   } catch (err) {
     console.error('加载失败', err)
   }
 })
 
+// 提交评论
 const submitComment = async () => {
   if (!newComment.value.trim()) return
   if (!userStore.userInfo) {
@@ -144,44 +140,17 @@ const submitComment = async () => {
   }
 
   try {
-    const isLocal = API.comment.includes('localhost')
-    const data = {
+    await axios.post(API.comment, {
       articleId: id,
-      avatar: userStore.userInfo?.avatar || 'https://picsum.photos/200/200?random=99',
-      username: userStore.userInfo?.username || '游客',
       content: newComment.value,
-      score: userScore.value,
-      time: new Date().toLocaleString()
-    }
-
-    // 提交评论
-    const res = await axios.post(API.comment, data, {
+      score: userScore.value
+    }, {
       headers: { Authorization: `Bearer ${token}` }
     })
-
-    if (isLocal || res.data.code === 200) {
-      commentList.value.unshift(data)
-    }
-
-    // 更新评分
-    if (userScore.value > 0) {
-      if (!article.value.userScores) article.value.userScores = []
-      article.value.userScores.push(userScore.value)
-      const total = article.value.userScores.reduce((a, b) => a + b, 0)
-      article.value.score = total / article.value.userScores.length
-
-      await axios.patch(`${API.article}/${id}`, {
-        score: article.value.score,
-        userScores: article.value.userScores
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-    }
 
     newComment.value = ''
     userScore.value = 0
   } catch (err) {
-    console.error(err)
     alert('发表失败')
   }
 }
@@ -200,7 +169,6 @@ const submitComment = async () => {
 .avatar { width: 56px; height: 56px; border-radius: 50%; }
 .author-info { display: flex; align-items: center; gap: 8px; }
 .username { font-size: 18px; font-weight: 500; color: #333; }
-.follow-btn { background: #ff6600; color: #fff; border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
 .author-right { display: flex; gap: 24px; }
 .action-item { display: flex; flex-direction: column; align-items: center; color: #666; }
 .action-item .icon { font-size: 22px; }

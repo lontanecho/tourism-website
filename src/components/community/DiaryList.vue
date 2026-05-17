@@ -9,34 +9,22 @@
             <div class="user-info">
               <div class="username">{{ userStore.userInfo?.username}}</div>
               <div class="user-stats">
-                <span class="stat-item">👍 0</span>
-                <span class="stat-item">❤️ 0</span>
+                
               </div>
             </div>
           </div>
 
           <div class="sidebar-tabs">
             <div class="sidebar-tab active">我的社区</div>
-            <div class="sidebar-tab">浏览历史</div>
+            
           </div>
 
           <div class="sidebar-menu">
+          
             <div class="menu-item">
-              <span>我的收藏</span>
-              <span class="badge">0</span>
+              <router-link to="/user" active-class="active">我的游记</router-link>
             </div>
-            <div class="menu-item">
-              <span>我的草稿</span>
-              <span class="badge">0</span>
-            </div>
-            <div class="menu-item">
-              <span>我的游记</span>
-              <span class="badge">1</span>
-            </div>
-            <div class="menu-item">
-              <span>我的回复</span>
-              <span class="badge">0</span>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -47,8 +35,9 @@
           <div class="tab-bar">
             <div class="tab-item active">游记推荐</div>
             <div class="sort-dropdown">
-              <select v-model="sortBy" @change="sortArticleList">
+              <select v-model="sortType" @change="getArticleData">
                 <option value="default">默认排序</option>
+                <option value="interest">兴趣推荐</option>
                 <option value="viewCount">按浏览量</option>
                 <option value="score">按评分</option>
               </select>
@@ -68,7 +57,7 @@
         </div>
 
         <div 
-          v-for="item in sortedArticleList" 
+          v-for="item in articleList" 
           :key="item.id" 
           class="article-card"
           @click="goDetail(item.id)"
@@ -99,7 +88,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
@@ -108,72 +97,42 @@ const userStore = useUserStore()
 const router = useRouter()
 const token = userStore.token
 
-
-// 统一接口配置
+// 排序类型：default 默认 / interest 兴趣 / viewCount 浏览量 / score 评分
+const sortType = ref('default')
+const articleList = ref([])
 
 const API = {
-  articleList: 'http://localhost:3000/articles', // 游记列表
-  //articlelist:'htttp://api/articlelist'
+  recommend: 'http://localhost:3000/api/travel/recommend'
 }
 
-// 游记数据
-const articleList = ref([])
-const sortBy = ref('default')
-
-// 排序
-const sortedArticleList = computed(() => {
-  const arr = [...articleList.value]
-  if (sortBy.value === 'viewCount') {
-    return arr.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0))
-  } else if (sortBy.value === 'score') {
-    return arr.sort((a, b) => (b.score || 0) - (a.score || 0))
-  } else {
-    return arr
+// 发起请求获取后端排好序的数据
+const getArticleData = async () => {
+  if (!userStore.userInfo?.id) return
+  try {
+    const res = await axios.get(API.recommend, {
+      headers: { Authorization: `Bearer ${token}` },
+      params: {
+        userId: userStore.userInfo.id,
+        sort: sortType.value
+      }
+    })
+    articleList.value = res.data
+  } catch (err) {
+    console.error('获取列表失败', err)
   }
-})
+}
 
-const sortArticleList = () => {}
+onMounted(() => {
+  getArticleData()
+})
 
 // 跳转详情
 const goDetail = (id) => {
   router.push(`/article/detail/${id}`)
 }
-
-
-// 获取游记列表（统一规范）
-const getArticleList = async () => {
-  try {
-    const res = await axios.get(API.articleList, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-
-
-    const isLocal = API.articleList.includes('localhost')
-
-    if (isLocal) {
-      // 本地模拟
-      articleList.value = res.data
-    } else {
-      // 真实后端
-      if (res.data.code === 200) {
-        articleList.value = res.data.data
-      } else {
-        alert(res.data.msg || '获取失败')
-      }
-    }
-
-  } catch (err) {
-    console.error(err)
-    alert('网络异常')
-  }
-}
-onMounted(() => {
-  getArticleList()
-})
 </script>
 
 <style scoped>
-/* 你的样式完全不动 */
 .community-page {
   max-width: 1200px;
   margin: 0 auto;

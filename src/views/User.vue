@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <!-- 内容区：只保留我的游记 -->
+    <!--我的游记 -->
     <div class="content-box">
       <div class="article-list">
         <div 

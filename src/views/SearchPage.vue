@@ -209,7 +209,6 @@ const goNoteDetail = (id) => router.push(`/article/detail/${id}`)
 </script>
 
 <style scoped>
-/* 样式完全不变，我就不占篇幅了 */
 .search-page {
   max-width: 1200px;
   margin: 0 auto;

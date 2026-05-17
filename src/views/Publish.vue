@@ -88,7 +88,7 @@
         </div>
 
         <button class="ai-create-btn" @click="goToAICreate">AI 创作</button>
-        <button class="save-draft-btn">保存草稿</button>
+        
         <button class="publish-btn" @click="handlePublish" :disabled="loading">
           {{ loading ? '发布中...' : '发布游记' }}
         </button>
@@ -244,7 +244,7 @@ const onVideosChange = (e) => {
 }
 
 // 插入表情
-// 插入表情 —— 修复光标跳到开头
+
 const insertEmoji = (em) => {
   showEmojiPanel.value = false
   const ed = editorRef.value

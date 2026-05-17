@@ -5,6 +5,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=1",
       "bgCover": "https://picsum.photos/1920/480?random=101",
+      "interest_tags": "自然风光,海岛度假",
       "id": "NSKfzX69tbQ"
     },
     {
@@ -12,6 +13,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=2",
       "bgCover": "https://picsum.photos/1920/480?random=102",
+      "interest_tags": "城市漫步,美食探店,历史,园林",
       "id": "2ftfY_ItOSc"
     },
     {
@@ -19,6 +21,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=3",
       "bgCover": "https://picsum.photos/1920/480?random=103",
+      "interest_tags": "人文古迹,古镇古村",
       "id": "aB7sK9xLzQw"
     },
     {
@@ -26,6 +29,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=4",
       "bgCover": "https://picsum.photos/1920/480?random=104",
+      "interest_tags": "雪山徒步,峡谷探险",
       "id": "kP9sR2tBvFg"
     },
     {
@@ -33,6 +37,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=5",
       "bgCover": "https://picsum.photos/1920/480?random=105",
+      "interest_tags": "美食探店,乡村休闲",
       "id": "zL5kF7gHjT2"
     },
     {
@@ -40,6 +45,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=6",
       "bgCover": "https://picsum.photos/1920/480?random=106",
+      "interest_tags": "城市漫步,人文古迹",
       "id": "mR4sP8dFgH1"
     },
     {
@@ -47,6 +53,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=7",
       "bgCover": "https://picsum.photos/1920/480?random=107",
+      "interest_tags": "海岛度假,海滨休闲",
       "id": "qW3eR7tYbNd"
     },
     {
@@ -54,6 +61,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=8",
       "bgCover": "https://picsum.photos/1920/480?random=108",
+      "interest_tags": "雪山徒步,民俗体验",
       "id": "tB6vF5sGjKl"
     },
     {
@@ -61,6 +69,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=9",
       "bgCover": "https://picsum.photos/1920/480?random=109",
+      "interest_tags": "自然风光,森林氧",
       "id": "pO9iU7yTrEf"
     },
     {
@@ -68,6 +77,7 @@
       "password": "111",
       "avatar": "https://picsum.photos/200/200?random=10",
       "bgCover": "https://picsum.photos/1920/480?random=110",
+      "interest_tags": "人文古迹,红色旅游",
       "id": "wS2dF5gHjKl"
     }
   ],
@@ -160,13 +170,10 @@
       "username": "小美",
       "userAvatar": "https://picsum.photos/200/200?random=1",
       "title": "北京故宫一日游",
+      "tags": "历史",
       "cover": "https://picsum.photos/800/400?random=10",
       "content": "<div style='font-size:24px; font-weight:bold;'>故宫真的太震撼了！</div><p>红墙黄瓦，一步一景，能深刻感受到历史的厚重。推荐大家早上去，人少拍照好看～</p>",
       "createTime": "2026/4/20 10:11:12",
-      "likeCount": 20,
-      "collectCount": 15,
-      "likeUserIds": [],
-      "collectUserIds": [],
       "images": [],
       "videos": [],
       "id": "art001",
@@ -185,11 +192,10 @@
       "username": "小帅",
       "userAvatar": "https://picsum.photos/200/200?random=2",
       "title": "万里长城，不到长城非好汉",
+      "tags": "历史",
       "cover": "https://picsum.photos/800/400?random=11",
       "content": "<div style='font-size:24px; font-weight:bold;'>长城太壮观了！</div><p>爬上去虽然累，但风景绝对值得。建议穿舒适鞋子，备好水。</p>",
       "createTime": "2026/4/20 11:22:33",
-      "likeCount": 15,
-      "collectCount": 10,
       "images": [],
       "videos": [],
       "id": "art002",
@@ -206,10 +212,9 @@
       "username": "旅行酱",
       "userAvatar": "https://picsum.photos/200/200?random=3",
       "title": "颐和园的美，江南既视感",
+      "tags": "历史,园林",
       "content": "<div style='font-size:24px; font-weight:bold;'>皇家园林名不虚传</div><p>长廊、湖泊、小桥流水，像走进水墨画里一样，超适合散步拍照。</p>",
       "createTime": "2026/4/20 13:14:15",
-      "likeCount": 33,
-      "collectCount": 22,
       "images": [],
       "videos": [],
       "id": "art003",
@@ -227,10 +232,9 @@
       "username": "青山",
       "userAvatar": "https://picsum.photos/200/200?random=4",
       "title": "天坛祈福，宁静又庄严",
+      "tags": "历史",
       "content": "<div style='font-size:24px; font-weight:bold;'>天坛氛围超棒</div><p>祈年殿太出片了！人不多的时候特别安静，能感受到古代皇家祭祀的庄严。</p>",
       "createTime": "2026/4/20 14:10:20",
-      "likeCount": 18,
-      "collectCount": 9,
       "images": [],
       "videos": [],
       "id": "art004",
@@ -247,14 +251,13 @@
       "username": "小雨",
       "userAvatar": "https://picsum.photos/200/200?random=5",
       "title": "兵马俑，世界第八大奇迹",
+      "tags": "历史",
       "content": "<div style='font-size:24px; font-weight:bold;'>震撼到失语！</div><p>千人千面，历史感扑面而来。一定要请讲解，不然看不懂背后的历史。</p>",
       "createTime": "2026/4/20 15:33:44",
-      "likeCount": 66,
-      "collectCount": 50,
       "images": [],
       "videos": [],
       "id": "art005",
-      "viewCount": 720,
+      "viewCount": 721,
       "score": 4.9,
       "userScores": [
         5,
@@ -268,10 +271,9 @@
       "username": "阿文",
       "userAvatar": "https://picsum.photos/200/200?random=6",
       "title": "西湖漫步，人间天堂",
+      "tags": "自然",
       "content": "<div style='font-size:24px; font-weight:bold;'>西湖太美啦</div><p>环湖骑行、坐船、拍照，怎么玩都舒服。春天来最合适，花开满城。</p>",
       "createTime": "2026/4/20 16:20:30",
-      "likeCount": 45,
-      "collectCount": 31,
       "images": [],
       "videos": [],
       "id": "art006",
@@ -289,10 +291,9 @@
       "username": "小桃",
       "userAvatar": "https://picsum.photos/200/200?random=7",
       "title": "布达拉宫，心灵的净土",
+      "tags": "历史,宫殿",
       "content": "<div style='font-size:24px; font-weight:bold;'>高原上的圣殿</div><p>高反有点难受，但看到布达拉宫那一刻，一切都值得。信仰的力量太强大。</p>",
       "createTime": "2026/4/20 17:10:11",
-      "likeCount": 89,
-      "collectCount": 77,
       "images": [],
       "videos": [],
       "id": "art007",
@@ -310,10 +311,9 @@
       "username": "藏地行者",
       "userAvatar": "https://picsum.photos/200/200?random=8",
       "title": "张家界，阿凡达的世界",
+      "tags": "自然",
       "content": "<div style='font-size:24px; font-weight:bold;'>奇峰三千，秀水八百</div><p>云雾缭绕的时候像仙境，百龙天梯、玻璃桥都超刺激！</p>",
       "createTime": "2026/4/20 18:40:50",
-      "likeCount": 56,
-      "collectCount": 39,
       "images": [],
       "videos": [],
       "id": "art008",
@@ -331,20 +331,20 @@
       "username": "大山",
       "userAvatar": "https://picsum.photos/200/200?random=9",
       "title": "黄山归来不看岳",
+      "tags": "自然",
       "content": "<div style='font-size:24px; font-weight:bold;'>黄山五绝名不虚传</div><p>奇松、怪石、云海、温泉、冬雪，每一样都让人惊叹，中国最美名山之一。</p>",
       "createTime": "2026/4/20 19:22:33",
-      "likeCount": 77,
-      "collectCount": 65,
       "images": [],
       "videos": [],
       "id": "art009",
-      "viewCount": 850,
-      "score": 5,
+      "viewCount": 851,
+      "score": 4.4,
       "userScores": [
         5,
         5,
         5,
-        5
+        5,
+        2
       ]
     },
     {
@@ -352,10 +352,9 @@
       "username": "云海",
       "userAvatar": "https://picsum.photos/200/200?random=10",
       "title": "9天走遍中国9大景点",
+      "tags": "自然",
       "content": "<div style='font-size:24px; font-weight:bold;'>超全攻略！</div><p>一次走完故宫、长城、西湖、黄山……祖国大好河山太美了，此生必去！</p>",
       "createTime": "2026/4/20 20:10:10",
-      "likeCount": 120,
-      "collectCount": 99,
       "images": [],
       "videos": [],
       "id": "art010",
@@ -373,6 +372,7 @@
       "username": "小帅",
       "userAvatar": "https://picsum.photos/200/200?random=2",
       "title": "故宫游记",
+      "tags": "历史,建筑",
       "cover": "blob:http://localhost:5173/d3c8d403-e29b-406c-897e-7df4f14c821b",
       "content": "<h2 style=\"margin: 16px 0px; font-size: 22px; font-weight: bold;\">第一天</h2><div>我来到了故宫</div><p><img src=\"blob:http://localhost:5173/f724fafb-2539-4382-9c88-12d9b7942681\" style=\"max-width: 100%; margin: 8px 0px; border-radius: 6px;\"></p>",
       "viewCount": 0,
@@ -389,6 +389,7 @@
       "username": "小帅",
       "userAvatar": "https://picsum.photos/200/200?random=2",
       "title": "测试",
+      "tags": "现代",
       "cover": "blob:http://localhost:5173/f7e33b50-8a61-4621-aeb7-ea9e0ee21682",
       "content": "<br><h2 style=\"font-size: 22px; font-weight: bold; color: rgb(26, 26, 26); margin: 20px 0px 10px; padding-left: 12px; border-left: 4px solid rgb(22, 119, 255);\">测试测试</h2><div>测试</div><video src=\"blob:http://localhost:5173/cbb0f2bf-423a-4eab-a4ab-3f7edd500e0f\" controls=\"\" contenteditable=\"false\" style=\"max-width: 100%; margin: 10px 0px; border-radius: 8px;\"></video><img src=\"blob:http://localhost:5173/67ec7bd0-2b52-41f1-a1ac-1eac65faa70c\" contenteditable=\"false\" style=\"max-width: 100%; margin: 8px 0px; border-radius: 6px;\">",
       "viewCount": 0,
@@ -673,6 +674,24 @@
       "score": 4,
       "time": "2026/5/10 14:21:52",
       "id": "imsnkFk0Ry0"
+    },
+    {
+      "articleId": "art009",
+      "avatar": "https://picsum.photos/200/200?random=2",
+      "username": "小帅",
+      "content": "额",
+      "score": 2,
+      "time": "2026/5/17 18:27:32",
+      "id": "OyFMg5Q6xSE"
+    },
+    {
+      "articleId": "art001",
+      "avatar": "https://picsum.photos/200/200?random=2",
+      "username": "小帅",
+      "content": "good",
+      "score": 4,
+      "time": "2026/5/17 19:08:56",
+      "id": "2Prpl6Pj7ps"
     }
   ],
   "foods": [
